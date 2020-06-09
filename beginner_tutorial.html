@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <!-- 
+        To run tutorial interactively, go to the raw output for this file and use that as the "tutorial="
+        querystring parameter. For example:
+        http://fantasyconsole.dragonruby.org.s3-website.us-east-2.amazonaws.com/?tutorial=https://gist.githubusercontent.com/amirrajan/18f1a1078976705de2bc75489311210c/raw/6f48a091e869b3f37979a2b450874c9d136a1c20/test-tutorial.html
+        -->
+        <title>DragonRuby - NAME OF TUTORIAL</title>
+    </head>
+    <body>
+        <h1>DragonRuby Game Toolkit - NAME OF TUTORIAL</h1>
+        <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype, and data-step-number -->
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="1">
+            
+            <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>STEP 1 TITLE</h1>
+                <p>STEP 1 TEXT</p>
+            </div>
+           
+            <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                    # STEP 1 CODE
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="2">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>STEP 2 TITLE</h1>
+                <p>STEP 2 TEXT</p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                    # STEP 2 CODE
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="3">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>STEP 3 TITLE</h1>
+                <p>STEP 3 TEXT</p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                    # STEP 3 CODE
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <footer id="bottom"></footer>
+
+        <script type="text/template-sample">
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="STEP_NUMBER">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>STEP_TITLE</h1>
+                <p>STEP_TEXT</p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                    # STEP_CODE
+                    </code>
+                </pre>
+            </div>
+        </div>
+        </script>
+    </body>
+</html>
