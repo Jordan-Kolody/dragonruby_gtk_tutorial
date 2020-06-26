@@ -5,24 +5,54 @@
         querystring parameter. For example:
         http://fantasyconsole.dragonruby.org.s3-website.us-east-2.amazonaws.com/?tutorial=https://gist.githubusercontent.com/amirrajan/18f1a1078976705de2bc75489311210c/raw/6f48a091e869b3f37979a2b450874c9d136a1c20/test-tutorial.html
         -->
-        <title>DragonRuby - NAME OF TUTORIAL</title>
+        <title>DragonRuby - Intro Tutorial</title>
     </head>
     <body>
-        <h1>DragonRuby Game Toolkit - NAME OF TUTORIAL</h1>
+        <h1>DragonRuby Game Toolkit - Intro Tutorial</h1>
         <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype, and data-step-number -->
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="1">
             
             <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 1 TITLE</h1>
-                <p>STEP 1 TEXT</p>
+                <h1>STEP 1: Hello world</h1>
+                <p>In this section we go over the hello world example </p>
             </div>
            
             <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 1 CODE
+                        # Welcome to the Dragonruby gametoolkit or gtk for short.
+                        # This tool kit has a large variety of expressions to help you in 
+                        # your game development endeavors.
+                      
+                        # There is a lot to go through, so to start we will check out the
+                        # classic hello world example.
+                      
+                        # Hello world is easily executed in three lines.
+                        # In addition, we can write it in a number of different ways:
+                      
+                        # Each of the parts of the example are as follows:
+                        # We have the function tick, and the argument args, and the contents of our program.
+                      
+                        # The function you will write all of code inside for the game or program is called tick.
+                      def tick args # The tick function will have a parameter,
+                        # which you can change the name to one that works for your purposes.
+                        # by default it's called args so we are going to leave it as args for the tutorial.
+                      
+                        # The usual way to write an expression in Dragonruby is to start with the first parameter,
+                        # in this case args, and follow it up with your desired expression on the subsequent lines.
+                        args.outputs.labels << [700, 410, "Hello World",          25,         0,   200,     050,    100,   25]
+                      end
+                        # You can change parts of the expression an make different things happen as well.
+                        # Try it to see what happens. 
+                        # These parts will be explained later in the tutorial.
+                      
+                        # Essentially it's devilishly simple to code hello world in ruby, 
+                        # and even more simple yet flexible to do it with the Dragonruby gtk.
+                        # I will briefly go through a pre-made tech demo to help understand some of thee specifics of what can be done.
+                        # Then, after we understand more about the expressions used, 
+                        # we can come back to it to see what is really going on.
                     </code>
                 </pre>
             </div>
