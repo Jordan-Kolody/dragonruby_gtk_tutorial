@@ -17,7 +17,8 @@
                 <h1>STEP 1: In the Beginning there was Hello world</h1>
                 <p> Welcome to the Dragonruby gametoolkit or gtk for short. 
                     This tool kit has a large variety of expressions to help you in your game development endeavors.
-                    There is a lot to go through, so to start we will look at the classic hello world example.In this section we go over the hello world example </p>
+                    There is a lot to go through, so to start we will look at the classic hello world example.
+                    In this section we go over the hello world example </p>
             </div>
            
             <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
@@ -115,7 +116,38 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 3 CODE
+                    # To create a label with the gtk we will need to use the following array format:
+                    #                        X     Y    TEXT                    
+                    args.outputs.labels << [80, 110, "This is a game", 
+                    # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA, FONT FILE
+                     -5,    1,         200, 050,   100,  175,   "fonts/coolfont.ttf"]
+                      # The parameters start with the coordinate, x and y,
+                      # followed by the text in quotations that we want outputted,
+                      # each of which is to be separated by a comma.
+                      # After that we have the text size, in this case -5, 
+                      # the lowest value, becasue the resolution of the
+                      # webclient is so small alignment, of which 1
+                      # will center your text on the coordinates, 0 will left allign,
+                      # and 2 will right allign
+                      # followed by red, green, and blue saturation.
+                      # Finally, the alpha is the transparency,
+                      # which needs to be set at 255 to be solid, 
+                      # and lastly is font with the extension .ttf.
+                    
+                      # We can also represent text with a hash instead of an array.
+                      args.outputs.labels << {
+                        x: 1,
+                        y: 110,
+                        text: "Lives:",
+                        size_enum: -5,
+                        alignment_enum: 0,
+                        r: 155,
+                        g: 50,
+                        b: 50,
+                        a: 255,
+                        font: "fonts/manaspc.ttf"
+                    }
+
                     </code>
                 </pre>
             </div>
@@ -181,7 +213,7 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 8 CODE
+                    # Test
                     </code>
                 </pre>
             </div>
