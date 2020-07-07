@@ -116,6 +116,7 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+                        def tick args
                     # To create a label with the gtk we will need to use the following array format:
                     #                        X     Y    TEXT                    
                     args.outputs.labels << [80, 110, "This is a game", 
@@ -147,7 +148,7 @@
                         a: 255,
                         font: "fonts/manaspc.ttf"
                     }
-
+                    end
                     </code>
                 </pre>
             </div>
@@ -155,8 +156,12 @@
 
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="4">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 4 TITLE</h1>
-                <p>STEP 4 TEXT</p>
+                <h1>Spep 4: Input, mouse clicks</h1>
+                <p> Taking an input from the user is very important.
+                    It allows for the changing of the game state 
+                    based on the users input. In our case we will 
+                    use mouse clicks. 
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
