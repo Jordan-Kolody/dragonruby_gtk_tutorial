@@ -14,22 +14,16 @@
             
             <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 1: Hello world</h1>
-                <p>In this section we go over the hello world example </p>
+                <h1>STEP 1: In the Beginning there was Hello world</h1>
+                <p> Welcome to the Dragonruby gametoolkit or gtk for short. 
+                    This tool kit has a large variety of expressions to help you in your game development endeavors.
+                    There is a lot to go through, so to start we will look at the classic hello world example.In this section we go over the hello world example </p>
             </div>
            
             <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-
-                        # Welcome to the Dragonruby gametoolkit or gtk 
-                        # for short. This tool kit has a large variety of 
-                        # expressions to help you in your game development 
-                        # endeavors.
-                                              
-                        # There is a lot to go through, so to start we 
-                        # will look at the classic hello world example.
                                               
                         # Hello world is easily executed in three lines.
                         # In addition, we can write it in a number of 
@@ -74,13 +68,40 @@
 
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="2">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 2 TITLE</h1>
-                <p>STEP 2 TEXT</p>
+                <h1>Ticks:</h1>
+                <p> Ticks are one of the key components of the gtk. 
+                    There are 60 ticks, or instances of the game, per second.
+                    
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 2 CODE
+                        # By default args is what we tend to use as 
+                        # the main object which the rest of the game will run on.
+                        def tick args
+                        # First we are going to want a variable to represent 
+                        # the tick count there are 60 ticks per second
+                        # Ticks also represent the number of frames of the game 
+                        # that exist consecutively per second
+                        ticks = args.state.tick_count 
+                        # Having a variable will let us bypass using 
+                        # the whole expression going forward.
+    args.outputs.labels << [80, 60, ticks, -5, 0, 200, 050, 100, 125]
+                        
+                        # The tick count is useful.
+                        # It allows us to know how many instances of the game 
+                        # have ran, it gives us a sense of time for our game,
+                        # and because game will update every frame, it will 
+                        #allow us to differentiate actions depending on the 
+                        #current frame.
+                      
+                        # We can also use ticks to animate a sprite or 
+                        # manipulate the environment.
+                        # Unfortunately we wont have time to go over that.
+                        # Expect a later tutorial to cover that.
+                        
+                        end
                     </code>
                 </pre>
             </div>
@@ -88,8 +109,8 @@
 
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="3">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 3 TITLE</h1>
-                <p>STEP 3 TEXT</p>
+                <h1>Labels</h1>
+                <p>Lables are the main text output in a game.</p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
