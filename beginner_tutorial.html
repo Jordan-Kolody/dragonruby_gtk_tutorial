@@ -111,44 +111,48 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="3">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Labels</h1>
-                <p>Lables are the main text output in a game.</p>
+  <p>Lables are the main text output in a game. We also have, lines, borders, solids,
+       sprites, inputs, outputs, keyboard, mouse, and controller inputs which are
+       critical components of the gtk.
+</p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                    # To create a label with the gtk we will need to use the following array format:
-                    #                        X     Y    TEXT                    
-                    args.outputs.labels << [80, 110, "This is a game", 
-                    # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA, FONT FILE
-                     -5,    1,         200, 050,   100,  175,   "fonts/coolfont.ttf"]
-                      # The parameters start with the coordinate, x and y,
-                      # followed by the text in quotations that we want outputted,
-                      # each of which is to be separated by a comma.
-                      # After that we have the text size, in this case -5, 
-                      # the lowest value, becasue the resolution of the
-                      # webclient is so small alignment, of which 1
-                      # will center your text on the coordinates, 0 will left allign,
-                      # and 2 will right allign
-                      # followed by red, green, and blue saturation.
-                      # Finally, the alpha is the transparency,
-                      # which needs to be set at 255 to be solid, 
-                      # and lastly is font with the extension .ttf.
-                    
-                      # We can also represent text with a hash instead of an array.
-                      args.outputs.labels << {
-                        x: 1,
-                        y: 110,
-                        text: "Lives:",
-                        size_enum: -5,
-                        alignment_enum: 0,
-                        r: 155,
-                        g: 50,
-                        b: 50,
-                        a: 255,
-                        font: "fonts/manaspc.ttf"
-                    }
-                    end
+                        
+                        # To create a label with the gtk we will need to use the following array format:
+                        #                        X     Y    TEXT                    
+                        args.outputs.labels << [80, 80, "This is a game", 
+                        # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA, FONT FILE
+                         -5,    1,         200, 050,   100,  175,   "fonts/coolfont.ttf"]
+                          # The parameters start with the coordinate, x and y,
+                          # followed by the text in quotations that we want outputted,
+                          # each of which is to be separated by a comma.
+                          # After that we have the text size, in this case -5, 
+                          # the lowest value, becasue the resolution of the
+                          # webclient is so small alignment, of which 1
+                          # will center your text on the coordinates, 0 will left allign,
+                          # and 2 will right allign
+                          # followed by red, green, and blue saturation.
+                          # Finally, the alpha is the transparency,
+                          # which needs to be set at 255 to be solid, 
+                          # and lastly is font with the extension .ttf.
+                        
+                          # We can also represent text with a hash instead of an array.
+                          args.outputs.labels << {
+                            x: 10,
+                            y: 20,
+                            text: "Transparant",
+                            size_enum: -5,
+                            alignment_enum: 0,
+                            r: 155,
+                            g: 50,
+                            b: 50,
+                            a: 50,
+                            font: "fonts/manaspc.ttf"
+                        }
+                        end
                     </code>
                 </pre>
             </div>
@@ -166,7 +170,79 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 4 CODE
+                        def tick args 
+                        # Because there is a game instance every frame,
+                        # we need a way to save the changes from frame to frame
+                        # We can do this by creating a state variable.
+                        # State variables are best created in an 
+                        # if statement for our purposes.
+                        # If we try to create them outside of the 
+                        # if statement, it can result in the variable 
+                        # being redeclared with it's starting value every frame.
+                      
+                        # So we create click_count
+                        # In this case, if click_count doesnt exist we create it.
+                        if !args.state.click_count
+                      
+                          args.state.click_count = 0
+                        end
+                        args.state.click_count2 = 0 if !args.state.click_count2
+                        args.state.click_count3 ||= 0
+                        # These are 3 ways of doing the same thing
+                      
+                        # In this case we are making click_count, 
+                        # to track how many clicks have occurred inside 
+                        # the game window.
+                        # This aallows a change the game state every time 
+                        # a click occurs inside the window.
+                        # Clicking in the window now will reveal a 
+                        # temporary message
+                      
+                        # Now we check to see if the click has returned 
+                        # to the up position.
+                        # Every time this occurs we can 
+                        # increment click count by one.
+                        if args.inputs.mouse.up
+                          args.state.click_count += 1
+                        # We also need to reset mouse.up to 0 so it 
+                        # doesn't continuously increment click_count every frame.
+                          args.inputs.mouse.up = 0
+                        end
+                        # This is one of the many example of how you can 
+                        # use inputs to receive information from the user.
+                        # In this case we are receiving a click from the user
+                        # and depending on the number of clicks we are 
+                        # outputting different information onto the screen.
+                        # The way we set it up, it's kind of like a power point 
+                        # in that each click can add additional components.
+                      
+                        # We can take input from any key, click or button via the
+                        # args.inputs.mouse, args.inputs.keyboard, and 
+                        # args.inputs.controller expressions.
+                        # Adding key designations to keyboard and controller
+                        # expressions allow us to use
+                        # almost any key or button in our game.
+                        # From there we can add .up, .down, .held, .click
+                        # and all sorts of expressions to change the the 
+                        # information we are obtaining from a press.
+                        # in the movment section we will see how we 
+                        # can move a sprite with a key press
+
+                        if args.state.click_count == 1
+                            # To create a label with the gtk we will need to use the following array format:
+                            args.outputs.labels << [80, 40, "Temp", -5, 1, 200, 250, 200, 255]
+                            elsif args.state.click_count == 2
+                            args.outputs.labels << [20, 80, "Temp", -5, 1, 70, 50, 250, 165]
+                            elsif args.state.click_count == 3
+                            args.outputs.labels << [60, 40, "Temp", -5, 1, 0, 250, 200, 255]
+                            elsif args.state.click_count == 4
+                            args.outputs.labels << [100, 20, "Temp", -5, 1, 200, 50, 0, 55]
+                            elsif args.state.click_count => 5
+                            args.outputs.labels << [80, 60, "This is very important", -5, 1, 200, 250, 200, 255]
+                            args.outputs.labels << [80, 40, "for creating a user interface", -5, 1, 200, 250, 200, 255]
+                            args.outputs.labels << [80, 20, "Clicking a button per say", -5, 1, 200, 250, 200, 255]
+                        end                  
+                    end
                     </code>
                 </pre>
             </div>
