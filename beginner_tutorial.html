@@ -152,6 +152,14 @@
                             a: 50,
                             font: "fonts/manaspc.ttf"
                         }
+                        # Most of the gtk expressions have a more readable version like hashed
+                        # which can help when you are just starting out.
+                        # Hashes may be more readable, but they are harder on performance.
+                        # Arrays are faster and easier to compile.
+                        # It's more efficient to use arrays, so once the developer 
+                        # gets use to the expressions, switching back to 
+                        # unless hashes are needed for functionality, arrays are the go to.
+
                         end
                     </code>
                 </pre>
@@ -228,78 +236,273 @@
                         # in the movment section we will see how we 
                         # can move a sprite with a key press
 
+                        # click now in the window to reveal A New Text
+                        # each click will reveal a new text
                         if args.state.click_count == 1
                             # To create a label with the gtk we will need to use the following array format:
-                            args.outputs.labels << [80, 40, "Temp", -5, 1, 200, 250, 200, 255]
+                            args.outputs.labels << [80, 40, "A New Text", -5, 1, 200, 250, 200, 255]
                             elsif args.state.click_count == 2
-                            args.outputs.labels << [20, 80, "Temp", -5, 1, 70, 50, 250, 165]
+                            args.outputs.labels << [20, 80, "A New Text", -5, 1, 70, 50, 250, 165]
                             elsif args.state.click_count == 3
-                            args.outputs.labels << [60, 40, "Temp", -5, 1, 0, 250, 200, 255]
+                            args.outputs.labels << [60, 40, "A New Text", -5, 1, 0, 250, 200, 255]
                             elsif args.state.click_count == 4
-                            args.outputs.labels << [100, 20, "Temp", -5, 1, 200, 50, 0, 55]
+                            args.outputs.labels << [100, 20, "A New Text", -5, 1, 200, 50, 0, 55]
                             elsif args.state.click_count => 5
                             args.outputs.labels << [80, 60, "This is very important", -5, 1, 200, 250, 200, 255]
                             args.outputs.labels << [80, 40, "for creating a user interface", -5, 1, 200, 250, 200, 255]
-                            args.outputs.labels << [80, 20, "Clicking a button per say", -5, 1, 200, 250, 200, 255]
+                            args.outputs.labels << [80, 20, "", -5, 1, 200, 250, 200, 255]
                         end                  
                     end
+                    # Thats it, 5 clicks.
+                    # Now before we move on the the next part try playign with some of the values.
                     </code>
                 </pre>
             </div>
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="5">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 5 TITLE</h1>
-                <p>STEP 5 TEXT</p>
+                <h1>Lines</h1>
+                <p>Lines have x/y coordinates like labels but they refer to the start position and
+                    the second set rerfer to the end x/y positions.
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 5 CODE
+                        def tick args
+                      # The next expression we will go through is lines:
+                      #                       X1  Y1    X2     
+                      args.outputs.lines <<  [0,  60,  80, 
+                      #     Y2    RED   GREEN   BLUE  ALPHA
+                            0,    0,    0,      0,    255]
+                      # Lines are different but a little less complicated.
+                      # The first 4 fields are the x/y coordinate beginning and end points.
+                      # x1, y1 are the origin points, and x2, y2 are the end points to the line.
+                      # Just like with labels you can change the color of the line.
+                      # You can even make it invisible or transparent using alpha if you want.
+                    
+                      # The Line also has a hash                
+                        args.outputs.lines << {
+                            x: 0,
+                            y: 0,
+                            x2: 100,
+                            y2: 80,
+                            r: 0,
+                            g: 255,
+                            b: 0,
+                            a: 255
+                        }
+                        # Play around with the values and you can see how
+                        # it affects the lines
+                    end
                     </code>
                 </pre>
             </div>
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="6">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 6 TITLE</h1>
-                <p>STEP 6 TEXT</p>
+                <h1>Borders and Solids</h1>
+                <p>What if we wanted to have border around a section of the game? What about a popup interface? Using boarders and solids can allow us to add a backround for a menu even. </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 6 CODE
+                    def tick args
+                        # Often you will want to play with the coordinate to get 
+                        # things where you want them.
+                        # We shall create a couple variables to assist in this process.
+                        board_x = 50
+                        board_y = 60
+                        board_w = 10
+                        board_h = 12
+
+                        # Boarders and solids are like lines, but they start 
+                        # at the desired coordinate and then have
+                        # a width and height.
+                        # X, Y are the coordinates and w and h are width and height.
+                        # Similarly to the other expressions we also have alignment and color.
+                    
+
+                        #                        X         Y         WIDTH     HEIGHT  
+                        args.outputs.borders << [board_x,  board_y,  board_w,  board_h, 
+                        #  RED  GREEN   BLUE  ALPHA
+                           0,   0,      200,  255]
+                        # solids are orgized pretty much the same way as boarders
+                        # The only difference is that they portray a solid color.
+                        args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 
+                        35, 0, 50, 255]
+                        
+                        # As before, you can play around with the values 
+                        # to see how things in the window change
+
+
+                    end
                     </code>
                 </pre>
             </div>
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="7">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 7 TITLE</h1>
-                <p>STEP 7 TEXT</p>
+                <h1>Overview</h1>
+                <p>We have seen: how ticks dictate the way our game runs,
+                    how we can use mouse clicks to change whats diplayed, 
+                    how labels, lines, borders and solids works. Next we 
+                    will see how sprites can be outputed and manipulated.
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # STEP 7 CODE
+                        def tick args
+                            ticks = args.state.tick_count
+                            args.outputs.labels << [64, 70, ticks, -5, 1, 0, 0, 0, 255]
+                            args.output.lines << [0, 0, 10, 10, 0, 0, 0, 255] 
+
+                            board_x = 540
+                            board_y = 668
+                            board_w = 200
+                            board_h = 45
+                            args.outputs.borders << [board_x,  board_y,  board_w,  board_h, 0,   0,      200,  255 ] 
+                            args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 
+                        35, 0, 50, 255]
+
+                        end
                     </code>
                 </pre>
             </div>
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="8">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>STEP 8 TITLE</h1>
-                <p>STEP 8 TEXT</p>
+                <h1>Reset and other expressions</h1>
+                <p>The gtk also has many additional expressions that can be usefull.
+                    One such is the reset expression. This will reset the game screen 
+                    every time the dedicated code is changed. 
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    # Test
+                        # In addition to the expressions are such things as gtk expressions.
+                        $gtk.reset   # reset all game state if reloaded.
+                        # This expression will reset or reload the game every time that the game is saved.
+                        # There are many more that exist in dragon ruby that can help with testing 
+                        # the game or even with functionality.
+                        # If we wanted to we could set up something more elaborate here, instead of creating it globally,
+                        # we could have the game reset if the user presses r for example.
+                        
                     </code>
                 </pre>
             </div>
         </div>
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="9">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>Sprites</h1>
+                <p>The next element for us to examine is sprites.
+                    These are the key elements of the game. They
+                    represent the enemies, the user, objects, 
+                    and most of the other elements in  our game
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                       def tick args
+                            # Sprites will act as a character, npc, building, wall, bullet,
+                            # or basically anything graphical on the screen.
+                            # Its easy to make a simple interface using lines, borders, and solids, 
+                            # but sprites will fill your game with colors and fantastic moving parts.
+                        
+                            # Lets start with a simple sprite such as a circle:
+                            
+                            SIZE = 100
+                            #                         X    Y    W    H   
+                            args.outputs.sprites << [ 20,  20,  SIZE,  SIZE, 
+                            # Location/Path               Angle  Alpha  Red    Green  Blue
+                            'sprites/circle-black.png', 45,    200,   10,    230,   15]
+                            # Important to note here is the back slashed used for the location of the png.
+                            # Different systems work differently when tracing a location.
+                            # The gtk uses back slashes for location.
+                            # It's important to use the correct path, otherwise... well you will see :)
 
+                                                    
+                            # If you use the method from above you have your X, and Y coordinates,
+                            # then your Length and With in pixels
+                            # Following this, we have the location of the file of the sprite.
+                            # Then the Angle, which rotates counter clockwise starting at 3 O'clock.
+                            # We use degrees instead of radians, because...
+                            # Well it's so much more intuitive and easy isn't it?
+                            # Following the angle is the alpha, and the 3 color saturation's red green blue.
+
+                            # Sprites will continue on the next step. 
+
+                        end 
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="10">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>Sprites Continued </h1>
+                <p> Sprites also have a number of additional parameters 
+                    if you use hashes. As you can see there is a problem with our
+                    sprite. This is what hapens when the path given to the sprite 
+                    is incorrect. 
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                    def tick args 
+                        # There are many extra parts to hashes some are 
+                        # self explanitory others might seem strange
+                        # Test them to see what they do.
+                        # We do not have enought time this tutorial to explore them.
+                        args.outputs.sprites << {
+                            x: 100,
+                            y: 100,
+                            w: 100,
+                            h: 100,
+                            path: "sprites/player.png",
+                            angle: 0,
+                            a: 255,
+                            r: 255,
+                            g: 255,
+                            b: 255,
+                            # These we wont be touching in this tutorial, 
+                            # but they are extremely useful. \/ \/ \/
+                            source_x:  0,
+                            source_y:  0,
+                            source_w: -1,
+                            source_h: -1,
+                            flip_vertically: false,
+                            flip_horizontally: false,
+                            angle_anchor_x: 0.5,
+                            angle_anchor_y: 1.0
+                          }
+                      
+                        # Whats this checkers pattern?
+                        # This is what happens when your path doesnt lead to a file or destination without a compatible file.
+                        # No sprite exists of the desicnated name in the designated path
+                        #  so it outputs a place holder.
+                        end
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="10">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>step </h1>
+                <p> desc
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                        #code
+                    </code>
+                </pre>
+            </div>
+        </div>
 
         <footer id="bottom"></footer>
 
