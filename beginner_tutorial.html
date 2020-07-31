@@ -547,14 +547,20 @@
                             # our sprite.
 
                             if !args.state.sprite_x
-
+                                # we have our basic x/y variables
                                 args.state.sprite_x = 120
                                 args.state.sprite_y = 80
+                                # here is the size
                                 args.state.sprite_size = 5
+                                # and finnaly the movment speed.
+                                # this will determin howmany pixels per 
+                                #frame the sprite will move whie the key is pressed
                                 args.state.sprite_movment_speed = 1
                             end
                             args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
-
+                            # For key functions we want to use args.inputs.keybord.
+                            # after the last dot the desired key is typed.
+                            
                             # There are many ways to write the following, but
                             # this paticular way should serve our purposes.
                             # in this case we have the x coordinant increasing when d is pressed
@@ -565,19 +571,140 @@
                             args.state.sprite_x -= args.state.sprite_movment_speed if args.inputs.keyboard.a
                             args.state.sprite_y += args.state.sprite_movment_speed if args.inputs.keyboard.w
                             args.state.sprite_y -= args.state.sprite_movment_speed if args.inputs.keyboard.s
+
                         end
                     </code>
                 </pre>
             </div>
         </div>
-     
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="13">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>Direction and Boundries </h1>
+                <p> We can change the orientation of our sprite by introducing
+                    a variable named direction that changes with the key pressed.
+                    We can also stop the sprite from leaving the screen by creating 
+                    bounds or wrapping the sprite to the other side if it trys to leave.
+                    
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                        def tick args
+                            if !args.state.sprite_x
+                                args.state.sprite_x = 120
+                                args.state.sprite_y = 80
+                                args.state.sprite_size = 5
+                                args.state.sprite_movment_speed = 1
+                                # Here is the new direction variable
+                                args.state.direction = 90 
+                            end
+                            args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png, args.state.direction]
+                            # Now that we have an extra variable to assign when
+                            # a key is pressed we will change the format of our if statments
+                            if args.inputs.keyboard.d
+                                args.state.sprite_x += args.state.sprite_movment_speed
+                                args.state.direction = 0 
+                            end
+                            if args.inputs.keyboard.w
+                                args.state.sprite_y += args.state.sprite_movment_speed 
+                                args.state.direction = 90 
+                            end
+                            if args.inputs.keyboard.a
+                                args.state.sprite_x -= args.state.sprite_movment_speed 
+                                args.state.direction = 180 
+                            end
+                            if args.inputs.keyboard.s
+                                args.state.sprite_y -= args.state.sprite_movment_speed 
+                                args.state.direction = 270 
+                            end
+                            
+                            screen_bound_y = 240
+                            screen_bound_x = 160
+                            if  args.state.sprite_y <= 0 
+                                # If the circle y coordinate is less than the bottom of the screen
+                                # it will relocate the sprite back to where 
+                                # it was before it tried to leave the screen 
+                                args.state.sprite_y= 1
+                            elsif  args.state.sprite_y >= screen_bound_y
+                                args.state.sprite_y = screen_bound_y-1
+                            elsif  args.state.sprite_x <= 0
+                                args.state.sprite_x = 1
+                            elsif  args.state.sprite_x >= screen_bound_x
+                                args.state.sprite_x = screen_bound_x-1
+                            end
+                        end
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="14">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>Wrapping </h1>
+                <p> Here we can see how wrapping works. When our sprite
+                    tries to leave the screen it is snapped back onto the other
+                    side of the window. This is determined by the size of the usable
+                    protion of our game. In our case the whole windows resolution will do.
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                        def tick args
+                            # Now if we want our sprite to wrap we can 
+                            # do that by having the sprites coordinates change 
+                            # when it goes out of bounds or off the screen.
+                            # This can also allow you to make barriers too as we have seen.
+                            screen_bound_y = 240
+                            screen_bound_x = 160
+                            if  args.state.sprite_y <= 0 
+                                # If the circle y coordinate is less than the bottom of the screen
+                                # it will relocate the sprite at the top of the screen.
+                                args.state.sprite_y= screen_bound_y
+                            elsif  args.state.sprite_y >= screen_bound_y
+                                args.state.sprite_y = 0
+                            elsif  args.state.sprite_x <= 0
+                                args.state.sprite_x =screen_bound_x
+                            elsif  args.state.sprite_x >= screen_bound_x
+                                args.state.sprite_x = 0
+                            end
+
+                            if !args.state.sprite_x
+                                args.state.sprite_x = 120
+                                args.state.sprite_y = 80
+                                args.state.sprite_size = 5
+                                args.state.sprite_movment_speed = 1
+                                args.state.direction = 90 
+                            end
+                            args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png, args.state.direction]
+                            if args.inputs.keyboard.d
+                                args.state.sprite_x += args.state.sprite_movment_speed
+                                args.state.direction = 0 
+                            end
+                            if args.inputs.keyboard.w
+                                args.state.sprite_y += args.state.sprite_movment_speed 
+                                args.state.direction = 90 
+                            end
+                            if args.inputs.keyboard.a
+                                args.state.sprite_x -= args.state.sprite_movment_speed 
+                                args.state.direction = 180 
+                            end
+                            if args.inputs.keyboard.s
+                                args.state.sprite_y -= args.state.sprite_movment_speed 
+                                args.state.direction = 270 
+                            end
+                        end
+                        
+                    </code>
+                </pre>
+            </div>
+        </div>
 
 
 
 
-
-
-        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="10">
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="15">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>step </h1>
                 <p> desc
