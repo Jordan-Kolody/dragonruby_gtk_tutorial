@@ -121,44 +121,44 @@
                     <code class="language-ruby" itemprop="text">
                         def tick args
                         
-                        # To create a label with the gtk we will need to use the following array format:
-                        #                        X     Y    TEXT                    
-                        args.outputs.labels << [80, 80, "This is a game", 
-                        # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA, FONT FILE
-                         -5,    1,         200, 050,   100,  175,   "fonts/coolfont.ttf"]
-                          # The parameters start with the coordinate, x and y,
-                          # followed by the text in quotations that we want outputted,
-                          # each of which is to be separated by a comma.
-                          # After that we have the text size, in this case -5, 
-                          # the lowest value, becasue the resolution of the
-                          # webclient is so small alignment, of which 1
-                          # will center your text on the coordinates, 0 will left allign,
-                          # and 2 will right allign
-                          # followed by red, green, and blue saturation.
-                          # Finally, the alpha is the transparency,
-                          # which needs to be set at 255 to be solid, 
-                          # and lastly is font with the extension .ttf.
-                        
-                          # We can also represent text with a hash instead of an array.
-                          args.outputs.labels << {
-                            x: 10,
-                            y: 20,
-                            text: "Transparant",
-                            size_enum: -5,
-                            alignment_enum: 0,
-                            r: 155,
-                            g: 50,
-                            b: 50,
-                            a: 50,
-                            font: "fonts/manaspc.ttf"
-                        }
-                        # Most of the gtk expressions have a more readable version like hashed
-                        # which can help when you are just starting out.
-                        # Hashes may be more readable, but they are harder on performance.
-                        # Arrays are faster and easier to compile.
-                        # It's more efficient to use arrays, so once the developer 
-                        # gets use to the expressions, switching back to 
-                        # unless hashes are needed for functionality, arrays are the go to.
+                            # To create a label with the gtk we will need to use the following array format:
+                            #                        X     Y    TEXT                    
+                            args.outputs.labels << [80, 80, "This is a game", 
+                            # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA, FONT FILE
+                            -5,    1,         200, 050,   100,  175,   "fonts/coolfont.ttf"]
+                            # The parameters start with the coordinate, x and y,
+                            # followed by the text in quotations that we want outputted,
+                            # each of which is to be separated by a comma.
+                            # After that we have the text size, in this case -5, 
+                            # the lowest value, becasue the resolution of the
+                            # webclient is so small alignment, of which 1
+                            # will center your text on the coordinates, 0 will left allign,
+                            # and 2 will right allign
+                            # followed by red, green, and blue saturation.
+                            # Finally, the alpha is the transparency,
+                            # which needs to be set at 255 to be solid, 
+                            # and lastly is font with the extension .ttf.
+                            
+                            # We can also represent text with a hash instead of an array.
+                            args.outputs.labels << {
+                                x: 10,
+                                y: 20,
+                                text: "Transparant",
+                                size_enum: -5,
+                                alignment_enum: 0,
+                                r: 155,
+                                g: 50,
+                                b: 50,
+                                a: 50,
+                                font: "fonts/manaspc.ttf"
+                            }
+                            # Most of the gtk expressions have a more readable version like hashed
+                            # which can help when you are just starting out.
+                            # Hashes may be more readable, but they are harder on performance.
+                            # Arrays are faster and easier to compile.
+                            # It's more efficient to use arrays, so once the developer 
+                            # gets use to the expressions, switching back to 
+                            # unless hashes are needed for functionality, arrays are the go to.
 
                         end
                     </code>
@@ -396,7 +396,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="9">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Sprites</h1>
+                <h1>Sprites Part 1: The Basics</h1>
                 <p>The next element for us to examine is sprites.
                     These are the key elements of the game. They
                     represent the enemies, the user, objects, 
@@ -442,7 +442,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="10">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Sprites Continued </h1>
+                <h1>Sprites Part 2: Hashes </h1>
                 <p> Sprites also have a number of additional parameters 
                     if you use hashes. As you can see there is a problem with our
                     sprite. This is what hapens when the path given to the sprite 
@@ -462,7 +462,7 @@
                             y: 100,
                             w: 100,
                             h: 100,
-                            path: "sprites/player.png",
+                            path: "sprites/circle.png",
                             angle: 0,
                             a: 255,
                             r: 255,
@@ -482,13 +482,101 @@
                       
                         # Whats this checkers pattern?
                         # This is what happens when your path doesnt lead to a file or destination without a compatible file.
-                        # No sprite exists of the desicnated name in the designated path
-                        #  so it outputs a place holder.
+                        # No sprite exists of the desicnated name in the designated path,
+                        # so it outputs a place holder.
                         end
                     </code>
                 </pre>
             </div>
         </div>
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="11">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>Sprites Part 3: Saving info Frame to Frame </h1>
+                <p> Somthing that is very important is saving some
+                    of the information from a pervious frame 
+                    to be used in the next frame. This is done as shown.
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                        def tick args
+                            # First we need to create variables for our sprites. 
+                            # We want to do this in a way that it check is the 
+                            # object exists or not. 
+                            # Its nice that in ruby we do not need to declare a variable.
+                            # We can simply check if it exists or not.
+                            args.state.sprite_x ||= 0
+                            args.state.sprite_y ||= 0
+                            args.state.sprite_size ||= 5
+                            # Doing this esstablished the values for x and y
+                            # and becasue they are an object of state the values will carry over
+                            # from one tick/frame to another.
+                            args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
+                            # Using these varibles that are carried from frame to frame 
+                            # lets us change them when ever we need to.
+
+                            # For example we can have them change based on the current tick count.
+                            args.state.sprite_x += args.state.tick_count%240 if args.state.sprite_x
+                            args.state.sprite_y += args.state.tick_count%160 if args.state.sprite_y
+                            # This will move the sprite depending on the tick count as you can see.
+                            args.output.labels << [50, 50, args.state.tick_count]
+
+                            # Often we will need to play with values untill we see
+                            # a desirable outcome. In this case we could play with the innitaial
+                            # values or how we are changing them.
+                            end
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="12">
+            <div itemscope="itemscope" itemtype="tutorial-text">
+                <h1>Movment and inputs </h1>
+                <p> Moving a character in a game could be done however we want.
+                    For this instance we will move the sprite based on the wasd 
+                    keys just like lot of pc games use.
+                </p>
+            </div>
+            <div itemscope="itemscope" itemtype="tutorial-code">
+                <pre>
+                    <code class="language-ruby" itemprop="text">
+                       def tick args
+                            # For us to set up movemtent of our circle, we are
+                            # going to want to first set up the starting location of
+                            # our sprite.
+
+                            if !args.state.sprite_x
+
+                                args.state.sprite_x = 120
+                                args.state.sprite_y = 80
+                                args.state.sprite_size = 5
+                                args.state.sprite_movment_speed = 1
+                            end
+                            args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
+
+                            # There are many ways to write the following, but
+                            # this paticular way should serve our purposes.
+                            # in this case we have the x coordinant increasing when d is pressed
+                            # and decreasing when a is pressed. similarly we have
+                            # y increasing whem w is pressed and decreasing when s is pressed
+                            # now our circle will move like a character in a game.
+                            args.state.sprite_x += args.state.sprite_movment_speed if args.inputs.keyboard.d
+                            args.state.sprite_x -= args.state.sprite_movment_speed if args.inputs.keyboard.a
+                            args.state.sprite_y += args.state.sprite_movment_speed if args.inputs.keyboard.w
+                            args.state.sprite_y -= args.state.sprite_movment_speed if args.inputs.keyboard.s
+                        end
+                    </code>
+                </pre>
+            </div>
+        </div>
+     
+
+
+
+
+
+
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="10">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>step </h1>
