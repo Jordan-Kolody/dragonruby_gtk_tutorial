@@ -206,7 +206,7 @@
 
                               args.state.click_count = 0
                             end
-                            # args.state.click_count2 = 0 if !args.state.click_count2
+                            args.state.click_count2 = 0 if !args.state.click_count2
                             args.state.click_count3 ||= 0
                             # These are 3 ways of doing the same thing
 
@@ -249,19 +249,19 @@
                             # and all sorts of expressions to change the the
                             # information we are obtaining from a press.
                             # in the movement section we will see how we
-                            # can move a sprite with a key press
+                            # can move a sprite with a key press.
 
                             # click now in the window to reveal A New Text
-                            # each click will reveal a new text
+                            # each click will reveal a new text.
                             if args.state.click_count == 1
                                 args.outputs.labels << [80, 40, "A New Text", -5, 1, 200, 250, 200, 255]
-                                elsif args.state.click_count == 2
+                            elsif args.state.click_count == 2
                                 args.outputs.labels << [20, 80, "A New Text", -5, 1, 70, 50, 250, 165]
-                                elsif args.state.click_count == 3
+                            elsif args.state.click_count == 3
                                 args.outputs.labels << [60, 40, "A New Text", -5, 1, 0, 250, 200, 255]
-                                elsif args.state.click_count == 4
+                            elsif args.state.click_count == 4
                                 args.outputs.labels << [100, 20, "A New Text", -5, 1, 200, 50, 0, 55]
-                                elsif args.state.click_count => 5
+                            elsif args.state.click_count > 5
                                 args.outputs.labels << [80, 60, "This is very important", -5, 1, 200, 250, 200, 255]
                                 args.outputs.labels << [80, 40, "for creating a user interface", -5, 1, 200, 250, 200, 255]
                                 args.outputs.labels << [80, 20, "^_^", -5, 1, 200, 250, 200, 255]
@@ -286,31 +286,31 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                      # The next expression we will go through is lines:
-                      #                       X1  Y1    X2     
-                      args.outputs.lines <<  [0,  60,  80, 
-                      #     Y2    RED   GREEN   BLUE  ALPHA
-                            0,    0,    0,      0,    255]
-                      # Lines are different but a little less complicated.
-                      # The first 4 fields are the x/y coordinate beginning and end points.
-                      # x1, y1 are the origin points, and x2, y2 are the end points to the line.
-                      # Just like with labels you can change the color of the line.
-                      # You can even make it invisible or transparent using alpha if you want.
-                    
-                      # The Line also has a hash                
-                        args.outputs.lines << {
-                            x: 0,
-                            y: 0,
-                            x2: 100,
-                            y2: 80,
-                            r: 0,
-                            g: 255,
-                            b: 0,
-                            a: 255
-                        }
-                        # Play around with the values and you can see how
-                        # it affects the lines
-                    end
+                            # The next expression we will go through is lines:
+                            #                       X1  Y1    X2
+                            args.outputs.lines <<  [0,  60,  80,
+                            #     Y2    RED   GREEN   BLUE  ALPHA
+                                0,    0,    0,      0,    255]
+                            # Lines are different but a little less complicated.
+                            # The first 4 fields are the x/y coordinate beginning and end points.
+                            # x1, y1 are the origin points, and x2, y2 are the end points to the line.
+                            # Just like with labels you can change the color of the line.
+                            # You can even make it invisible or transparent using alpha if you want.
+
+                            # The Line also has a hash
+                            args.outputs.lines << {
+                                x: 0,
+                                y: 0,
+                                x2: 100,
+                                y2: 80,
+                                r: 0,
+                                g: 255,
+                                b: 0,
+                                a: 255
+                            }
+                            # Play around with the values and you can see how
+                            # it affects the lines
+                        end
                     </code>
                 </pre>
             </div>
