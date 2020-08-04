@@ -189,8 +189,9 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args 
-                            # Because there is a game instance every frame, we
-                            # need a way to save the changes from frame to frame
+                            # Because there is a game instance every frame,
+                            # we will need a way to save the changes from
+                            # frame to frame.
                             # We can do this by creating a state variable.
                             # State variables are best created in an
                             # if statement for our purposes.
@@ -205,7 +206,7 @@
 
                               args.state.click_count = 0
                             end
-                            args.state.click_count2 = 0 if !args.state.click_count2
+                            # args.state.click_count2 = 0 if !args.state.click_count2
                             args.state.click_count3 ||= 0
                             # These are 3 ways of doing the same thing
 
@@ -218,29 +219,31 @@
                             # temporary message
 
                             # Now we check to see if the click has returned
-                            # to the up position.
-                            # Every time this occurs we can
-                            # increment click count by one.
+                            # to the up position. Every time this occurs
+                            # we can increment click count by one.
                             if args.inputs.mouse.up
                               args.state.click_count += 1
-                            # We also need to reset mouse.up to 0 so it doesn't
+                            # We also need to reset mouse.up to 0.
+                            # we do this so the values dont continue
+                            # to increment uncontrollably.
                             # continuously increment click_count each frame.
                               args.inputs.mouse.up = 0
                             end
                             # This is one of the many example of how you can
                             # use inputs to receive information from the user.
-                            # In this case we are receiving a click from the user
-                            # and depending on the number of clicks we are
-                            # outputting different information onto the screen.
+                            # In this case we are receiving a click from the
+                            # user and depending on how many mouse clicks
+                            # have occurred we will output
+                            # a different information onto the screen.
                             # It's almost like a power point how we have set
-                            # it up. So, now each click will add and additional
-                            # component to the game window.
+                            # it up. So, now each click will change
+                            # a component to the game window.
 
-                            # We can take input from any key, click or button via the
-                            # args.inputs.mouse, args.inputs.keyboard, and
-                            # args.inputs.controller expressions.
-                            # Adding key designations to keyboard and controller
-                            # expressions allow us to use
+                            # We can take input from any key, click or button
+                            # via the args.inputs.mouse, args.inputs.keyboard,
+                            # and args.inputs.controller expressions.
+                            # Adding key designations to keyboard and
+                            # controller expressions allow us to use
                             # almost any key or button in our game.
                             # From there we can add .up, .down, .held, .click
                             # and all sorts of expressions to change the the
@@ -265,7 +268,7 @@
                             end
                         end
                         # That's it, 5 clicks.
-                        # Now before we move on the the next part 
+                        # Now before we move on the the next part
                         # try playing with some of the values.
                         # See what happens :P
                     </code>
