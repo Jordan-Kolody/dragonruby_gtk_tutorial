@@ -178,7 +178,7 @@
 
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="4">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Spep 4: Input, mouse clicks</h1>
+                <h1>Step 4: Input, mouse clicks</h1>
                 <p> Taking an input from the user is very important.
                     It allows for the changing of the game state 
                     based on the users input. In our case we will 
@@ -277,9 +277,9 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="5">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Lines</h1>
+                <h1>Step 5: Lines</h1>
                 <p>Lines have x/y coordinates like labels but they refer to the start position and
-                    the second set rerfer to the end x/y positions.
+                    the second set refer to the end x/y positions.
                 </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -288,9 +288,9 @@
                         def tick args
                             # The next expression we will go through is lines:
                             #                       X1  Y1    X2
-                            args.outputs.lines <<  [0,  60,  80,
+                            args.outputs.lines <<  [0,  90,   160,
                             #     Y2    RED   GREEN   BLUE  ALPHA
-                                0,    0,    0,      0,    255]
+                                  0,    0,    0,      0,    255]
                             # Lines are different but a little less complicated.
                             # The first 4 fields are the x/y coordinate beginning and end points.
                             # x1, y1 are the origin points, and x2, y2 are the end points to the line.
@@ -301,8 +301,8 @@
                             args.outputs.lines << {
                                 x: 0,
                                 y: 0,
-                                x2: 100,
-                                y2: 80,
+                                x2: 160,
+                                y2: 90,
                                 r: 0,
                                 g: 255,
                                 b: 0,
@@ -317,7 +317,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="6">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Borders and Solids</h1>
+                <h1>Step 6: Borders and Solids</h1>
                 <p>What if we wanted to have border around a section of the game? What about a popup interface? Using boarders and solids can allow us to add a background for a menu even. </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -359,7 +359,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="7">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Overview</h1>
+                <h1>Step 7: Overview</h1>
                 <p>We have seen: how ticks dictate the way our game runs,
                     how we can use mouse clicks to change whats displayed,
                     how labels, lines, borders and solids works. Next we 
@@ -369,18 +369,20 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+                        $gtk.reset
                         def tick args
                             ticks = args.state.tick_count
                             args.outputs.labels << [64, 70, ticks, -5, 1, 0, 0, 0, 255]
-                            args.outputs.lines << [0, 0, 10, 10, 0, 0, 0, 255]
+                            args.outputs.lines << [37, 55, 86, 73, 0, 0, 0, 255]
+                            args.outputs.lines << [37, 74, 86, 56, 0, 0, 0, 255]
 
-                            board_x = 540
-                            board_y = 668
-                            board_w = 200
-                            board_h = 45
-                            args.outputs.borders << [board_x,  board_y,  board_w,  board_h, 0,   0,      200,  255 ] 
-                            args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 
-                        35, 0, 50, 255]
+                            board_x = 36
+                            board_y = 54
+                            board_w = 52
+                            board_h = 21
+
+                            args.outputs.borders << [board_x, board_y, board_w, board_h, 0, 0, 200,  255 ]
+                            args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 35, 0, 50, 255]
 
                         end
                     </code>
@@ -389,7 +391,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="8">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Reset and other expressions</h1>
+                <h1>Step 8: Reset and other expressions</h1>
                 <p>The gtk also has many additional expressions that can be useful.
                     One such is the reset expression. This will reset the game screen 
                     every time the dedicated code is changed. 
@@ -528,7 +530,7 @@
                             # Doing this established the values for x and y
                             # and because they are an object of state the values will carry over
                             # from one tick/frame to another.
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprites/circle-black.png]
                             # Using these variables that are carried from frame to frame
                             # lets us change them when ever we need to.
 
@@ -616,7 +618,7 @@
                                 # Here is the new direction variable
                                 args.state.direction = 90 
                             end
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png, args.state.direction]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprites/circle-black.png, args.state.direction]
                             # Now that we have an extra variable to assign when
                             # a key is pressed we will change the format of our if statements
                             if args.inputs.keyboard.d
@@ -694,7 +696,7 @@
                                 args.state.sprite_movement_speed = 1
                                 args.state.direction = 90 
                             end
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png, args.state.direction]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprites/circle-black.png, args.state.direction]
                             if args.inputs.keyboard.d
                                 args.state.sprite_x += args.state.sprite_movement_speed
                                 args.state.direction = 0 
