@@ -18,7 +18,7 @@
                 <p> Welcome to the Dragonruby gametoolkit or gtk for short. 
                     This tool kit has a large variety of expressions to help you in your game development endeavors.
                     There is a lot to go through, so to start we will look at the classic hello world example.
-                    In this section we go over the hello world example </p>
+                     </p>
             </div>
            
             <!-- KEY ATTRIBUTES THAT NEED TO BE DEFINED ARE itemscope, itemtype -->
@@ -60,7 +60,7 @@
                         # hello world in ruby, and even more simple 
                         # yet flexible to do it with the Dragonruby gtk.
                         # Next will go over the expressions.
-                        # We will look at lables, lines, borders,
+                        # We will look at labels, lines, borders,
                         # solids, sprites, and inputs.
                     </code>
                 </pre>
@@ -130,10 +130,10 @@
                             # followed by the text in quotations that we want outputted,
                             # each of which is to be separated by a comma.
                             # After that we have the text size, in this case -5, 
-                            # the lowest value, becasue the resolution of the
-                            # webclient is so small alignment, of which 1
-                            # will center your text on the coordinates, 0 will left allign,
-                            # and 2 will right allign
+                            # the lowest value, because the resolution of the
+                            # web-client is so small alignment, of which 1
+                            # will center your text on the coordinates, 0 will left align,
+                            # and 2 will right align
                             # followed by red, green, and blue saturation.
                             # Finally, the alpha is the transparency,
                             # which needs to be set at 255 to be solid, 
@@ -143,7 +143,7 @@
                             args.outputs.labels << {
                                 x: 10,
                                 y: 20,
-                                text: "Transparant",
+                                text: "hash",
                                 size_enum: -5,
                                 alignment_enum: 0,
                                 r: 155,
@@ -201,7 +201,7 @@
                         # In this case we are making click_count, 
                         # to track how many clicks have occurred inside 
                         # the game window.
-                        # This aallows a change the game state every time 
+                        # This allows a change the game state every time
                         # a click occurs inside the window.
                         # Clicking in the window now will reveal a 
                         # temporary message
@@ -233,7 +233,7 @@
                         # From there we can add .up, .down, .held, .click
                         # and all sorts of expressions to change the the 
                         # information we are obtaining from a press.
-                        # in the movment section we will see how we 
+                        # in the movement section we will see how we
                         # can move a sprite with a key press
 
                         # click now in the window to reveal A New Text
@@ -253,8 +253,8 @@
                             args.outputs.labels << [80, 20, "", -5, 1, 200, 250, 200, 255]
                         end                  
                     end
-                    # Thats it, 5 clicks.
-                    # Now before we move on the the next part try playign with some of the values.
+                    # That's it, 5 clicks.
+                    # Now before we move on the the next part try playing with some of the values.
                     </code>
                 </pre>
             </div>
@@ -302,7 +302,7 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="6">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Borders and Solids</h1>
-                <p>What if we wanted to have border around a section of the game? What about a popup interface? Using boarders and solids can allow us to add a backround for a menu even. </p>
+                <p>What if we wanted to have border around a section of the game? What about a popup interface? Using boarders and solids can allow us to add a background for a menu even. </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
@@ -327,7 +327,7 @@
                         args.outputs.borders << [board_x,  board_y,  board_w,  board_h, 
                         #  RED  GREEN   BLUE  ALPHA
                            0,   0,      200,  255]
-                        # solids are orgized pretty much the same way as boarders
+                        # solids are organized pretty much the same way as boarders
                         # The only difference is that they portray a solid color.
                         args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 
                         35, 0, 50, 255]
@@ -345,9 +345,9 @@
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Overview</h1>
                 <p>We have seen: how ticks dictate the way our game runs,
-                    how we can use mouse clicks to change whats diplayed, 
+                    how we can use mouse clicks to change whats displayed,
                     how labels, lines, borders and solids works. Next we 
-                    will see how sprites can be outputed and manipulated.
+                    will see how sprites can be outputted and manipulated.
                 </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -374,7 +374,7 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="8">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Reset and other expressions</h1>
-                <p>The gtk also has many additional expressions that can be usefull.
+                <p>The gtk also has many additional expressions that can be useful.
                     One such is the reset expression. This will reset the game screen 
                     every time the dedicated code is changed. 
                 </p>
@@ -454,9 +454,9 @@
                     <code class="language-ruby" itemprop="text">
                     def tick args 
                         # There are many extra parts to hashes some are 
-                        # self explanitory others might seem strange
+                        # self explanatory others might seem strange
                         # Test them to see what they do.
-                        # We do not have enought time this tutorial to explore them.
+                        # We do not have enough time this tutorial to explore them.
                         args.outputs.sprites << {
                             x: 100,
                             y: 100,
@@ -482,7 +482,7 @@
                       
                         # Whats this checkers pattern?
                         # This is what happens when your path doesnt lead to a file or destination without a compatible file.
-                        # No sprite exists of the desicnated name in the designated path,
+                        # No sprite exists of the designated name in the designated path,
                         # so it outputs a place holder.
                         end
                     </code>
@@ -509,11 +509,11 @@
                             args.state.sprite_x ||= 0
                             args.state.sprite_y ||= 0
                             args.state.sprite_size ||= 5
-                            # Doing this esstablished the values for x and y
-                            # and becasue they are an object of state the values will carry over
+                            # Doing this established the values for x and y
+                            # and because they are an object of state the values will carry over
                             # from one tick/frame to another.
                             args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
-                            # Using these varibles that are carried from frame to frame 
+                            # Using these variables that are carried from frame to frame
                             # lets us change them when ever we need to.
 
                             # For example we can have them change based on the current tick count.
@@ -522,8 +522,8 @@
                             # This will move the sprite depending on the tick count as you can see.
                             args.output.labels << [50, 50, args.state.tick_count]
 
-                            # Often we will need to play with values untill we see
-                            # a desirable outcome. In this case we could play with the innitaial
+                            # Often we will need to play with values until we see
+                            # a desirable outcome. In this case we could play with the initial
                             # values or how we are changing them.
                             end
                     </code>
@@ -532,7 +532,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="12">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Movment and inputs </h1>
+                <h1>Movement and inputs </h1>
                 <p> Moving a character in a game could be done however we want.
                     For this instance we will move the sprite based on the wasd 
                     keys just like lot of pc games use.
@@ -542,7 +542,7 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                        def tick args
-                            # For us to set up movemtent of our circle, we are
+                            # For us to set up movement of our circle, we are
                             # going to want to first set up the starting location of
                             # our sprite.
 
@@ -552,25 +552,25 @@
                                 args.state.sprite_y = 80
                                 # here is the size
                                 args.state.sprite_size = 5
-                                # and finnaly the movment speed.
-                                # this will determin howmany pixels per 
-                                #frame the sprite will move whie the key is pressed
-                                args.state.sprite_movment_speed = 1
+                                # and finally the movement speed.
+                                # this will determine how many pixels per
+                                #frame the sprite will move while the key is pressed
+                                args.state.sprite_movement_speed = 1
                             end
                             args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
-                            # For key functions we want to use args.inputs.keybord.
+                            # For key functions we want to use args.inputs.keyboard.
                             # after the last dot the desired key is typed.
                             
                             # There are many ways to write the following, but
-                            # this paticular way should serve our purposes.
-                            # in this case we have the x coordinant increasing when d is pressed
+                            # this particular way should serve our purposes.
+                            # in this case we have the x coordinate increasing when d is pressed
                             # and decreasing when a is pressed. similarly we have
-                            # y increasing whem w is pressed and decreasing when s is pressed
+                            # y increasing when w is pressed and decreasing when s is pressed
                             # now our circle will move like a character in a game.
-                            args.state.sprite_x += args.state.sprite_movment_speed if args.inputs.keyboard.d
-                            args.state.sprite_x -= args.state.sprite_movment_speed if args.inputs.keyboard.a
-                            args.state.sprite_y += args.state.sprite_movment_speed if args.inputs.keyboard.w
-                            args.state.sprite_y -= args.state.sprite_movment_speed if args.inputs.keyboard.s
+                            args.state.sprite_x += args.state.sprite_movement_speed if args.inputs.keyboard.d
+                            args.state.sprite_x -= args.state.sprite_movement_speed if args.inputs.keyboard.a
+                            args.state.sprite_y += args.state.sprite_movement_speed if args.inputs.keyboard.w
+                            args.state.sprite_y -= args.state.sprite_movement_speed if args.inputs.keyboard.s
 
                         end
                     </code>
@@ -579,11 +579,11 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="13">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Direction and Boundries </h1>
+                <h1>Direction and Boundaries </h1>
                 <p> We can change the orientation of our sprite by introducing
                     a variable named direction that changes with the key pressed.
                     We can also stop the sprite from leaving the screen by creating 
-                    bounds or wrapping the sprite to the other side if it trys to leave.
+                    bounds or wrapping the sprite to the other side if it tries to leave.
                     
                 </p>
             </div>
@@ -595,27 +595,27 @@
                                 args.state.sprite_x = 120
                                 args.state.sprite_y = 80
                                 args.state.sprite_size = 5
-                                args.state.sprite_movment_speed = 1
+                                args.state.sprite_movement_speed = 1
                                 # Here is the new direction variable
                                 args.state.direction = 90 
                             end
                             args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png, args.state.direction]
                             # Now that we have an extra variable to assign when
-                            # a key is pressed we will change the format of our if statments
+                            # a key is pressed we will change the format of our if statements
                             if args.inputs.keyboard.d
-                                args.state.sprite_x += args.state.sprite_movment_speed
+                                args.state.sprite_x += args.state.sprite_movement_speed
                                 args.state.direction = 0 
                             end
                             if args.inputs.keyboard.w
-                                args.state.sprite_y += args.state.sprite_movment_speed 
+                                args.state.sprite_y += args.state.sprite_movement_speed
                                 args.state.direction = 90 
                             end
                             if args.inputs.keyboard.a
-                                args.state.sprite_x -= args.state.sprite_movment_speed 
+                                args.state.sprite_x -= args.state.sprite_movement_speed
                                 args.state.direction = 180 
                             end
                             if args.inputs.keyboard.s
-                                args.state.sprite_y -= args.state.sprite_movment_speed 
+                                args.state.sprite_y -= args.state.sprite_movement_speed
                                 args.state.direction = 270 
                             end
                             
@@ -645,7 +645,7 @@
                 <p> Here we can see how wrapping works. When our sprite
                     tries to leave the screen it is snapped back onto the other
                     side of the window. This is determined by the size of the usable
-                    protion of our game. In our case the whole windows resolution will do.
+                    portion of our game. In our case the whole windows resolution will do.
                 </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -674,24 +674,24 @@
                                 args.state.sprite_x = 120
                                 args.state.sprite_y = 80
                                 args.state.sprite_size = 5
-                                args.state.sprite_movment_speed = 1
+                                args.state.sprite_movement_speed = 1
                                 args.state.direction = 90 
                             end
                             args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png, args.state.direction]
                             if args.inputs.keyboard.d
-                                args.state.sprite_x += args.state.sprite_movment_speed
+                                args.state.sprite_x += args.state.sprite_movement_speed
                                 args.state.direction = 0 
                             end
                             if args.inputs.keyboard.w
-                                args.state.sprite_y += args.state.sprite_movment_speed 
+                                args.state.sprite_y += args.state.sprite_movement_speed
                                 args.state.direction = 90 
                             end
                             if args.inputs.keyboard.a
-                                args.state.sprite_x -= args.state.sprite_movment_speed 
+                                args.state.sprite_x -= args.state.sprite_movement_speed
                                 args.state.direction = 180 
                             end
                             if args.inputs.keyboard.s
-                                args.state.sprite_y -= args.state.sprite_movment_speed 
+                                args.state.sprite_y -= args.state.sprite_movement_speed
                                 args.state.direction = 270 
                             end
                         end
