@@ -292,11 +292,14 @@
                             args.outputs.lines <<  [0,  90,   160,
                             #     Y2    RED   GREEN   BLUE  ALPHA
                                   0,    0,    0,      0,    255]
-                            # Lines are different but a little less complicated.
-                            # The first 4 fields are the x/y coordinate beginning and end points.
-                            # x1, y1 are the origin points, and x2, y2 are the end points to the line.
-                            # Just like with labels you can change the color of the line.
-                            # You can even make it invisible or transparent using alpha if you want.
+                            # Lines are different but a little less
+                            # complicated. The first 4 fields are the
+                            # x/y coordinate beginning and end points.
+                            # x1, y1 are the origin points, and x2, y2
+                            # are the end points to the line. Just like with
+                            # labels we can change the color of the line.
+                            # We can even make it invisible or transparent
+                            # using alpha if we want.
 
                             # The Line also has a hash
                             args.outputs.lines << {
@@ -324,36 +327,39 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    def tick args
-                        # Often you will want to play with the coordinate to get 
-                        # things where you want them.
-                        # We shall create a couple variables to assist in this process.
-                        board_x = 50
-                        board_y = 60
-                        board_w = 20
-                        board_h = 20
+                        def tick args
+                            # Often it is necessary to play with the
+                            # coordinates to get things in their
+                            # desired locations. We shall create a
+                            # couple variables to assist in this process.
+                            board_x = 50
+                            board_y = 60
+                            board_w = 20
+                            board_h = 20
 
-                        # Boarders and solids are like lines, but they start 
-                        # at the desired coordinate and then have
-                        # a width and height.
-                        # X, Y are the coordinates and w and h are width and height.
-                        # Similarly to the other expressions we also have alignment and color.
-                    
+                            # Boarders and solids are like lines, but they
+                            # start at the desired coordinate and then have
+                            # a width and height. X and Y are the coordinates.
+                            # W and H are width and height.
+                            # Similarly to the other expressions
+                            # we also have alignment color and transparency.
 
-                        #                        X         Y         WIDTH     HEIGHT  
-                        args.outputs.borders << [board_x,  board_y,  board_w,  board_h, 
-                        #  RED  GREEN   BLUE  ALPHA
-                           0,   0,      200,  255]
-                        # solids are organized pretty much the same way as boarders
-                        # The only difference is that they portray a solid color.
-                        args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 
-                        35, 0, 50, 255]
-                        
-                        # As before, you can play around with the values 
-                        # to see how things in the window change
+                            #                        X         Y
+                            args.outputs.borders << [board_x,  board_y,
+                            #  WIDTH     HEIGHT   RED  GREEN   BLUE  ALPHA
+                               board_w,  board_h, 0,   0,      200,  255]
+
+                            # solids are organized pretty much the same
+                            # way as boarders. The only difference is
+                            # that they portray a solid color.
+                            args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2,
+                            35, 0, 50, 255]
+
+                            # As before, you can play around with the values
+                            # to see how things in the window change
 
 
-                    end
+                        end
                     </code>
                 </pre>
             </div>
@@ -425,36 +431,48 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                       def tick args
-                            # Sprites will act as a character, npc, building, wall, bullet,
-                            # or basically anything graphical on the screen.
-                            # Its easy to make a simple interface using lines, borders, and solids, 
-                            # but sprites will fill your game with colors and fantastic moving parts.
-                        
-                            # Lets start with a simple sprite such as a circle:
-                            
-                            SIZE = 100
-                            #                         X    Y    W    H   
-                            args.outputs.sprites << [ 20,  20,  SIZE,  SIZE, 
-                            # Location/Path               Angle  Alpha  Red    Green  Blue
-                            'sprites/circle-black.png', 45,    200,   10,    230,   15]
-                            # Important to note here is the back slashed used for the location of the png.
-                            # Different systems work differently when tracing a location.
-                            # The gtk uses back slashes for location.
-                            # It's important to use the correct path, otherwise... well you will see :)
+                        def tick args
+                          # Wow that's a big sprite!
 
-                                                    
-                            # If you use the method from above you have your X, and Y coordinates,
-                            # then your Length and With in pixels
-                            # Following this, we have the location of the file of the sprite.
-                            # Then the Angle, which rotates counter clockwise starting at 3 O'clock.
-                            # We use degrees instead of radians, because...
-                            # Well it's so much more intuitive and easy isn't it?
-                            # Following the angle is the alpha, and the 3 color saturation's red green blue.
+                          # Sprites can act as a character, npc, building,
+                          # wall, bullet, or basically anything graphical
+                          # that you want them to be.
+                          # Its easy to make a simple interface using
+                          # lines, borders, and solids, but sprites will
+                          # fill your game with colors and fantastic
+                          # moving parts.
 
-                            # Sprites will continue on the next step. 
+                          # Lets start with a simple sprite such as a circle:
 
-                        end 
+                          SIZE = 100
+                          #                         X    Y    W      H
+                          args.outputs.sprites << [ 20,  20,  SIZE,  SIZE,
+                          # Location/Path
+                          'sprites/circle-black.png',
+                          # Angle  Alpha  Red    Green  Blue
+                            45,    200,   10,    230,   15]
+                          # Important to note here is the back slash is
+                          # used for the location of the png. Different
+                          # systems work differently when tracing a location.
+                          # The gtk uses back slashes for location.
+                          # It's important to use the correct path,
+                          # otherwise... well you will see ;)
+
+                          # If we use the method from above we have the
+                          # sprites X, and Y coordinates,then the Length
+                          # and With in pixels. Following this, we have
+                          # the location of the file of the sprite.
+                          # Then the Angle, which rotates counter clockwise
+                          # starting at 3 O'clock. We use degrees instead
+                          # of radians, because...
+                          # Well it's so much more intuitive and easy
+                          # isn't it? Following the angle is the 3 color
+                          # saturation's red, green, and blue,
+                          # and last of all is the alpha value.
+
+                          # Sprites will continue on the next step.
+
+                        end
                     </code>
                 </pre>
             </div>
@@ -471,39 +489,42 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                    def tick args 
-                        # There are many extra parts to hashes some are 
-                        # self explanatory others might seem strange
-                        # Test them to see what they do.
-                        # We do not have enough time this tutorial to explore them.
-                        args.outputs.sprites << {
-                            x: 80,
-                            y: 40,
-                            w: 10,
-                            h: 10,
-                            path: "sprites/circle.png",
-                            angle: 0,
-                            a: 255,
-                            r: 255,
-                            g: 255,
-                            b: 255,
-                            # These we wont be touching in this tutorial, 
-                            # but they are extremely useful. \/ \/ \/
-                            source_x:  0,
-                            source_y:  0,
-                            source_w: -1,
-                            source_h: -1,
-                            flip_vertically: false,
-                            flip_horizontally: false,
-                            angle_anchor_x: 0.5,
-                            angle_anchor_y: 1.0
-                          }
-                      
-                        # Whats this checkers pattern?
-                        # This is what happens when your path doesnt lead to a file or destination without a compatible file.
-                        # No sprite exists of the designated name in the designated path,
-                        # so it outputs a place holder.
-                        end
+                        def tick args
+                            # There are many extra parts to hashes some are
+                            # self explanatory others might seem strange
+                            # Test them to see what they do.
+                            # We do not have enough time this tutorial
+                            # to explore them, but future tutorials will.
+                            args.outputs.sprites << {
+                                x: 80,
+                                y: 40,
+                                w: 10,
+                                h: 10,
+                                path: "sprites/circle.png",
+                                angle: 0,
+                                a: 255,
+                                r: 255,
+                                g: 255,
+                                b: 255,
+                                # These we wont be touching in this tutorial,
+                                # but they are extremely useful. \/ \/ \/
+                                source_x:  0,
+                                source_y:  0,
+                                source_w: -1,
+                                source_h: -1,
+                                flip_vertically: false,
+                                flip_horizontally: false,
+                                angle_anchor_x: 0.5,
+                                angle_anchor_y: 1.0
+                              }
+
+                            # Whats this checkers pattern?
+                            # This is what happens when your path doesnt
+                            # lead to a file or destination without a
+                            # compatible file. No sprite exists of the
+                            # designated name in the designated path,
+                            # so it outputs a place holder.
+                            end
                     </code>
                 </pre>
             </div>
@@ -519,31 +540,42 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+
                         def tick args
-                            # First we need to create variables for our sprites.
-                            # We want to do this in a way that it check is the
-                            # object exists or not.
-                            # Its nice that in ruby we do not need to declare a variable.
-                            # We can simply check if it exists or not.
+                            # First we need to create variables for our
+                            # sprites. We want to do this in a way that
+                            # it check if the object exists or not.
+                            # Its nice that in ruby we do not need to
+                            # declare a variable.  We can simply check
+                            # if it exists or not and then assign a
+                            # value if it does in fact not exist.
                             args.state.sprite_x ||= 10
                             args.state.sprite_y ||= 10
                             args.state.sprite_size ||= 5
-                            # Doing this established the values for x and y
-                            # and because they are an object of state the values will carry over
-                            # from one tick/frame to another.
+                            # Doing this establishes the values for x and y.
+                            # Because they are an object of state, the
+                            # values will carry over from one tick/frame
+                            # to another.
                             args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png']
-                            # Using these variables that are carried from frame to frame
-                            # lets us change them when ever we need to.
+                            # Using these variables that are carried from
+                            # frame to frame lets us change them when ever
+                            # we need to.
 
-                            # For example we can have them change based on the current tick count.
-                            args.state.sprite_x = (args.state.sprite_x + args.state.tick_count)%160 if args.state.sprite_x
-                            args.state.sprite_y =  (args.state.sprite_y + args.state.tick_count)%90 if args.state.sprite_y
+                            # For example we can have them change based on
+                            # the current tick count.
+                            args.state.sprite_x = (args.state.sprite_x + args.state.tick_count)%160/10 if args.state.sprite_x
+                            args.state.sprite_y =  (args.state.sprite_y + args.state.tick_count)%90/10 if args.state.sprite_y
                             # This will move the sprite depending on the tick count as you can see.
                             args.outputs.labels << [50, 50, args.state.tick_count]
-
-                            # Often we will need to play with values until we see
-                            # a desirable outcome. In this case we could play with the initial
-                            # values or how we are changing them.
+                            # a little jank i know, but i assure you it can
+                            # be a useful techneque. If we have a sprites
+                            # location varry depending on the frame, we can
+                            # use this to establish a patrolling npc or monster
+                            # Often we will need to play with values until
+                            # we see a desirable outcome. In this case we
+                            # could play with the initial values or how we
+                            # are changing them to create movement that is
+                            # much more smooth and predictable.
                         end
                     </code>
                 </pre>
@@ -599,7 +631,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="13">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Sprites Part 5:Direction and Boundaries </h1>
+                <h1>Sprites Part 5: Direction and Boundaries </h1>
                 <p> We can change the orientation of our sprite by introducing
                     a variable named direction that changes with the key pressed.
                     We can also stop the sprite from leaving the screen by creating 
@@ -617,34 +649,37 @@
                                 args.state.sprite_size = 5
                                 args.state.sprite_movement_speed = 1
                                 # Here is the new direction variable
-                                args.state.direction = 90 
+                                args.state.direction = 90
                             end
                             args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
-                            # Now that we have an extra variable to assign when
-                            # a key is pressed we will change the format of our if statements
+                            # Now that we have an extra variable to assign
+                            # when  a key is pressed we will change the
+                            # format of our if statements.We can have our
+                            # sprite look in the direction it is traveling.
                             if args.inputs.keyboard.d
                                 args.state.sprite_x += args.state.sprite_movement_speed
-                                args.state.direction = 0 
+                                args.state.direction = 0
                             end
                             if args.inputs.keyboard.w
                                 args.state.sprite_y += args.state.sprite_movement_speed
-                                args.state.direction = 90 
+                                args.state.direction = 90
                             end
                             if args.inputs.keyboard.a
                                 args.state.sprite_x -= args.state.sprite_movement_speed
-                                args.state.direction = 180 
+                                args.state.direction = 180
                             end
                             if args.inputs.keyboard.s
                                 args.state.sprite_y -= args.state.sprite_movement_speed
-                                args.state.direction = 270 
+                                args.state.direction = 270
                             end
-                            
-                            screen_bound_y = 240
+
+                            screen_bound_y = 90
                             screen_bound_x = 160
-                            if  args.state.sprite_y <= 0 
-                                # If the circle y coordinate is less than the bottom of the screen
-                                # it will relocate the sprite back to where 
-                                # it was before it tried to leave the screen 
+                            if  args.state.sprite_y <= 0
+                                # If the circle y coordinate is less than
+                                # the bottom of the screen it will relocate
+                                # the sprite back to where it was before
+                                # it tried to leave the screen
                                 args.state.sprite_y= 1
                             elsif  args.state.sprite_y >= screen_bound_y
                                 args.state.sprite_y = screen_bound_y-1
@@ -661,7 +696,7 @@
 
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="14">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Wrapping </h1>
+                <h1>Sprites Part 6: Wrapping </h1>
                 <p> Here we can see how wrapping works. When our sprite
                     tries to leave the screen it is snapped back onto the other
                     side of the window. This is determined by the size of the usable
@@ -672,15 +707,17 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                            # Now if we want our sprite to wrap we can 
-                            # do that by having the sprites coordinates change 
-                            # when it goes out of bounds or off the screen.
-                            # This can also allow you to make barriers too as we have seen.
+                            # Now, if we want our sprite to wrap we can
+                            # do that by having the sprites coordinates
+                            # change when it goes out of bounds or off
+                            # the screen. This can also allow you to
+                            # make barriers too as we have seen.
                             screen_bound_y = 240
                             screen_bound_x = 160
-                            if  args.state.sprite_y <= 0 
-                                # If the circle y coordinate is less than the bottom of the screen
-                                # it will relocate the sprite at the top of the screen.
+                            if  args.state.sprite_y <= 0
+                                # If the circle y coordinate is less than
+                                # the bottom of the screen it will relocate
+                                # the sprite to the top of the screen.
                                 args.state.sprite_y= screen_bound_y
                             elsif  args.state.sprite_y >= screen_bound_y
                                 args.state.sprite_y = 0
@@ -695,27 +732,28 @@
                                 args.state.sprite_y = 80
                                 args.state.sprite_size = 5
                                 args.state.sprite_movement_speed = 1
-                                args.state.direction = 90 
+                                args.state.direction = 90
                             end
+                            # Down here we have the extra code we have
+                            # already discussed during this tutorial
                             args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
                             if args.inputs.keyboard.d
                                 args.state.sprite_x += args.state.sprite_movement_speed
-                                args.state.direction = 0 
+                                args.state.direction = 0
                             end
                             if args.inputs.keyboard.w
                                 args.state.sprite_y += args.state.sprite_movement_speed
-                                args.state.direction = 90 
+                                args.state.direction = 90
                             end
                             if args.inputs.keyboard.a
                                 args.state.sprite_x -= args.state.sprite_movement_speed
-                                args.state.direction = 180 
+                                args.state.direction = 180
                             end
                             if args.inputs.keyboard.s
                                 args.state.sprite_y -= args.state.sprite_movement_speed
-                                args.state.direction = 270 
+                                args.state.direction = 270
                             end
                         end
-                        
                     </code>
                 </pre>
             </div>
