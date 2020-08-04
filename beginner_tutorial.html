@@ -251,20 +251,21 @@
                             # in the movement section we will see how we
                             # can move a sprite with a key press.
 
-                            # click now in the window to reveal A New Text
+                            # click now in the window to reveal A New Tex
                             # each click will reveal a new text.
                             if args.state.click_count == 1
                                 args.outputs.labels << [80, 40, "A New Text", -5, 1, 200, 250, 200, 255]
                             elsif args.state.click_count == 2
-                                args.outputs.labels << [20, 80, "A New Text", -5, 1, 70, 50, 250, 165]
+                                args.outputs.labels << [20, 80, "Look a New Text", -5, 1, 70, 50, 250, 165]
                             elsif args.state.click_count == 3
-                                args.outputs.labels << [60, 40, "A New Text", -5, 1, 0, 250, 200, 255]
+                                args.outputs.labels << [60, 40, "Another New Text", -5, 1, 0, 250, 200, 255]
                             elsif args.state.click_count == 4
-                                args.outputs.labels << [100, 20, "A New Text", -5, 1, 200, 50, 0, 55]
+                                args.outputs.labels << [100, 20, "Text That's New", -5, 1, 200, 50, 0, 55]
                             elsif args.state.click_count > 4
                                 args.outputs.labels << [80, 60, "This is very important", -5, 1, 200, 250, 200, 255]
                                 args.outputs.labels << [80, 40, "for creating a user interface", -5, 1, 200, 250, 200, 255]
                                 args.outputs.labels << [80, 20, "^_^", -5, 1, 200, 250, 200, 255]
+                            end
                             end
                         end
                         # That's it, 5 clicks.
@@ -476,10 +477,10 @@
                         # Test them to see what they do.
                         # We do not have enough time this tutorial to explore them.
                         args.outputs.sprites << {
-                            x: 100,
-                            y: 100,
-                            w: 100,
-                            h: 100,
+                            x: 80,
+                            y: 40,
+                            w: 10,
+                            h: 10,
                             path: "sprites/circle.png",
                             angle: 0,
                             a: 255,
@@ -519,38 +520,38 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                            # First we need to create variables for our sprites. 
-                            # We want to do this in a way that it check is the 
-                            # object exists or not. 
+                            # First we need to create variables for our sprites.
+                            # We want to do this in a way that it check is the
+                            # object exists or not.
                             # Its nice that in ruby we do not need to declare a variable.
                             # We can simply check if it exists or not.
-                            args.state.sprite_x ||= 0
-                            args.state.sprite_y ||= 0
+                            args.state.sprite_x ||= 10
+                            args.state.sprite_y ||= 10
                             args.state.sprite_size ||= 5
                             # Doing this established the values for x and y
                             # and because they are an object of state the values will carry over
                             # from one tick/frame to another.
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprites/circle-black.png]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png']
                             # Using these variables that are carried from frame to frame
                             # lets us change them when ever we need to.
 
                             # For example we can have them change based on the current tick count.
-                            args.state.sprite_x += args.state.tick_count%240 if args.state.sprite_x
-                            args.state.sprite_y += args.state.tick_count%160 if args.state.sprite_y
+                            args.state.sprite_x = (args.state.sprite_x + args.state.tick_count)%160 if args.state.sprite_x
+                            args.state.sprite_y =  (args.state.sprite_y + args.state.tick_count)%90 if args.state.sprite_y
                             # This will move the sprite depending on the tick count as you can see.
                             args.outputs.labels << [50, 50, args.state.tick_count]
 
                             # Often we will need to play with values until we see
                             # a desirable outcome. In this case we could play with the initial
                             # values or how we are changing them.
-                            end
+                        end
                     </code>
                 </pre>
             </div>
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="12">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Movement and inputs </h1>
+                <h1>Sprites Part 4:Movement and inputs </h1>
                 <p> Moving a character in a game could be done however we want.
                     For this instance we will move the sprite based on the wasd 
                     keys just like lot of pc games use.
@@ -598,7 +599,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="13">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Direction and Boundaries </h1>
+                <h1>Sprites Part 5:Direction and Boundaries </h1>
                 <p> We can change the orientation of our sprite by introducing
                     a variable named direction that changes with the key pressed.
                     We can also stop the sprite from leaving the screen by creating 
@@ -618,7 +619,7 @@
                                 # Here is the new direction variable
                                 args.state.direction = 90 
                             end
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprites/circle-black.png, args.state.direction]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
                             # Now that we have an extra variable to assign when
                             # a key is pressed we will change the format of our if statements
                             if args.inputs.keyboard.d
@@ -696,7 +697,7 @@
                                 args.state.sprite_movement_speed = 1
                                 args.state.direction = 90 
                             end
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprites/circle-black.png, args.state.direction]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
                             if args.inputs.keyboard.d
                                 args.state.sprite_x += args.state.sprite_movement_speed
                                 args.state.direction = 0 
