@@ -188,6 +188,7 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+                        $gtk.reset
                         def tick args 
                             # Because there is a game instance every frame,
                             # we will need a way to save the changes from
@@ -222,12 +223,11 @@
                             # to the up position. Every time this occurs
                             # we can increment click count by one.
                             if args.inputs.mouse.up
-                              args.state.click_count += 1
-                            # We also need to reset mouse.up to 0.
-                            # we do this so the values dont continue
-                            # to increment uncontrollably.
-                            # continuously increment click_count each frame.
-                              args.inputs.mouse.up = 0
+                                args.state.click_count += 1
+                                # We also need to reset mouse.up to 0.
+                                # we do this so the values dont continue
+                                # to increment uncontrollably.
+                                args.inputs.mouse.up = 0
                             end
                             # This is one of the many example of how you can
                             # use inputs to receive information from the user.
@@ -372,7 +372,7 @@
                         def tick args
                             ticks = args.state.tick_count
                             args.outputs.labels << [64, 70, ticks, -5, 1, 0, 0, 0, 255]
-                            args.output.lines << [0, 0, 10, 10, 0, 0, 0, 255] 
+                            args.outputs.lines << [0, 0, 10, 10, 0, 0, 0, 255]
 
                             board_x = 540
                             board_y = 668
@@ -461,7 +461,7 @@
                 <h1>Sprites Part 2: Hashes </h1>
                 <p> Sprites also have a number of additional parameters 
                     if you use hashes. As you can see there is a problem with our
-                    sprite. This is what hapens when the path given to the sprite 
+                    sprite. This is what happens when the path given to the sprite
                     is incorrect. 
                 </p>
             </div>
@@ -508,8 +508,8 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="11">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Sprites Part 3: Saving info Frame to Frame </h1>
-                <p> Somthing that is very important is saving some
-                    of the information from a pervious frame 
+                <p> Something that is very important is saving some
+                    of the information from a previous frame
                     to be used in the next frame. This is done as shown.
                 </p>
             </div>
@@ -557,6 +557,7 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+                       $gtk.reset
                        def tick args
                             # For us to set up movement of our circle, we are
                             # going to want to first set up the starting location of
@@ -573,10 +574,10 @@
                                 #frame the sprite will move while the key is pressed
                                 args.state.sprite_movement_speed = 1
                             end
-                            args.output.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, sprite/circle-black.png]
+                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png']
                             # For key functions we want to use args.inputs.keyboard.
                             # after the last dot the desired key is typed.
-                            
+
                             # There are many ways to write the following, but
                             # this particular way should serve our purposes.
                             # in this case we have the x coordinate increasing when d is pressed
