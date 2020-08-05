@@ -266,7 +266,6 @@
                                 args.outputs.labels << [80, 40, "for creating a user interface", -5, 1, 200, 250, 200, 255]
                                 args.outputs.labels << [80, 20, "^_^", -5, 1, 200, 250, 200, 255]
                             end
-                            
                         end
                         # That's it, 5 clicks.
                         # Now before we move on the the next part
@@ -592,8 +591,8 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                       $gtk.reset
-                       def tick args
+                        $gtk.reset
+                        def tick args
                             # For us to set up movement of our circle, we are
                             # going to want to first set up the starting location of
                             # our sprite.
@@ -623,7 +622,6 @@
                             args.state.sprite_x -= args.state.sprite_movement_speed if args.inputs.keyboard.a
                             args.state.sprite_y += args.state.sprite_movement_speed if args.inputs.keyboard.w
                             args.state.sprite_y -= args.state.sprite_movement_speed if args.inputs.keyboard.s
-
                         end
                     </code>
                 </pre>
