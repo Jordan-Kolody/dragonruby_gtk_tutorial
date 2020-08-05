@@ -25,39 +25,37 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                                              
                         # Hello world is easily executed in three lines.
-                        # In addition, we can write it in a number of 
+                        # In addition, we can write it in a number of
                         # different ways.
-                                              
+
                         # The main expression consists of tick, the function
                         # args, which consist of the elements to be carried
-                        # over from one game instance to another, 
+                        # over from one game instance to another,
                         # and the contents of our program.
-                                              
-                        # The function we will write all of our code inside 
+
+                        # The function we will write all of our code inside
                         # of is called tick.
-                        def tick args # The tick function will have a 
-                        # parameter, which you can change the name to 
-                        # one that works for your purposes. By default 
+                        def tick args # The tick function will have a
+                        # parameter, which you can change the name to
+                        # one that works for your purposes. By default
                         # it's called args, so we will leave it as that.
-                                              
-                        # The usual way to write an expression in 
+
+                        # The usual way to write an expression in
                         # Dragonruby is to start with the first parameter,
-                        # in this case args, and follow it up with your 
+                        # in this case args, and follow it up with your
                         # desired expression on the subsequent lines.
-                                                
-                        args.outputs.labels << [80, 60, "Hello World",
-                        -5, 1, 200, 050, 100,   225]
-                        
+
+                        args.outputs.labels << [180, 160, "Hello World",
+                                          5, 0, 200, 050, 100,   225]
                         end
-                        
+
                         # To experiment, change aspects of the expression.
-                        # Try it to see what happens. 
+                        # Try it to see what happens.
                         # These parts will be explained later in the tutorial.
-                                              
-                        # Essentially it's devilishly simple to code 
-                        # hello world in ruby, and even more simple 
+
+                        # Essentially it's devilishly simple to code
+                        # hello world in ruby, and even more simple
                         # yet flexible to do it with the Dragonruby gtk.
                         # Next will go over the expressions.
                         # We will look at labels, lines, borders,
@@ -78,32 +76,31 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                        # By default args is what we tend to use as 
+                        # By default args is what we tend to use as
                         # the main object which the rest of the game
                         # will run on.
                         def tick args
-                        # First we are going to want a variable to represent 
-                        # the tick count there are 60 ticks per second
-                        # Ticks also represent the number of frames of the game 
-                        # that exist consecutively per second
-                        ticks = args.state.tick_count 
-                        # Having a variable will let us bypass using 
-                        # the whole expression going forward.
-                        args.outputs.labels << [80, 60, ticks, -5, 0, 200,
-                        050, 100, 125]
-                        
-                        # The tick count is useful.
-                        # It allows us to know how many instances of the game 
-                        # have ran, it gives us a sense of time for our game,
-                        # and because game will update every frame, it will 
-                        # allow us to differentiate actions depending on the
-                        # current frame.
-                      
-                        # We can also use ticks to animate a sprite or 
-                        # manipulate the environment.
-                        # Unfortunately we wont have time to go over that.
-                        # Expect a later tutorial to cover that.
-                        
+                          # First we are going to want a variable to represent
+                          # the tick count there are 60 ticks per second
+                          # Ticks also represent the number of frames of the
+                          # game that exist consecutively per second
+                          ticks = args.state.tick_count
+                          # Having a variable will let us bypass using
+                          # the whole expression going forward.
+                          args.outputs.labels << [80, 60, ticks, -5, 0, 200,
+                          050, 100, 125]
+
+                          # The tick count is useful.
+                          # It allows us to know how many instances of the game
+                          # have ran, it gives us a sense of time for our game,
+                          # and because game will update every frame, it will
+                          # allow us to differentiate actions depending on the
+                          # current frame.
+
+                          # We can also use ticks to animate a sprite or
+                          # manipulate the environment.
+                          # Unfortunately we wont have time to go over that.
+                          # Expect a later tutorial to cover that.
                         end
                     </code>
                 </pre>
@@ -113,63 +110,61 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="3">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Step 3: Labels</h1>
-  <p>Labels are the main text output in a game. We also have, lines, borders, solids,
-       sprites, inputs, outputs, keyboard, mouse, and controller inputs which are
-       critical components of the gtk.
-</p>
+                  <p>Labels are the main text output in a game. We also have, lines, borders, solids,
+                       sprites, inputs, outputs, keyboard, mouse, and controller inputs which are
+                       critical components of the gtk.
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                        
-                            # To create a label with the gtk we will need
-                            # to use the following array format:
-                            #                        X     Y    TEXT                    
-                            args.outputs.labels << [80, 80, "This is a game", 
-                            # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA,
-                            -5,    1,         200, 050,   100,  175,
-                            # FONT FILE
-                              "fonts/coolfont.ttf"]
-                            # The parameters start with the coordinate,
-                            # x and y, followed by the text in quotations
-                            # that we want outputted, each of which is to
-                            # be separated by a comma. After that we have
-                            # the text size, in this case -5, the lowest
-                            # value, because the resolution of the
-                            # web-client is so small alignment, of which 1
-                            # will center your text on the coordinates,
-                            # 0 will left align, and 2 will right align
-                            # followed by red, green, and blue saturation.
-                            # Finally, the alpha is the transparency,
-                            # which needs to be set at 255 to be solid, 
-                            # and lastly is font with the extension .ttf.
-                            
-                            # We can also represent text with a hash
-                            # instead of an array.
-                            args.outputs.labels << {
-                                x: 10,
-                                y: 20,
-                                text: "hash",
-                                size_enum: -5,
-                                alignment_enum: 0,
-                                r: 155,
-                                g: 50,
-                                b: 50,
-                                a: 50,
-                                font: "fonts/manaspc.ttf"
-                            }
-                            # Most of the gtk expressions have a more
-                            # readable version like a hash which can
-                            # help when you are just starting out.
-                            # Hashes may be more readable, but they
-                            # are harder on performance.
-                            # Arrays are faster and easier to compile.
-                            # It's more efficient to use arrays, so once
-                            # the developer  gets use to the expressions,
-                            # switching back to unless hashes are needed
-                            # for functionality, arrays are the go to.
+                          # To create a label with the gtk we will need
+                          # to use the following array format:
+                          #                        X     Y    TEXT
+                          args.outputs.labels << [80, 80, "This is a game",
+                          # SIZE, ALIGNMENT, RED, GREEN, BLUE, ALPHA,
+                          -5,    1,         200, 050,   100,  175,
+                          # FONT FILE
+                            "fonts/coolfont.ttf"]
+                          # The parameters start with the coordinate,
+                          # x and y, followed by the text in quotations
+                          # that we want outputted, each of which is to
+                          # be separated by a comma. After that we have
+                          # the text size, in this case -5, the lowest
+                          # value, because the resolution of the
+                          # web-client is so small alignment, of which 1
+                          # will center your text on the coordinates,
+                          # 0 will left align, and 2 will right align
+                          # followed by red, green, and blue saturation.
+                          # Finally, the alpha is the transparency,
+                          # which needs to be set at 255 to be solid,
+                          # and lastly is font with the extension .ttf.
 
+                          # We can also represent text with a hash
+                          # instead of an array.
+                          args.outputs.labels << {
+                            x: 10,
+                            y: 20,
+                            text: "hash",
+                            size_enum: -5,
+                            alignment_enum: 0,
+                            r: 155,
+                            g: 50,
+                            b: 50,
+                            a: 50,
+                            font: "fonts/manaspc.ttf"
+                          }
+                          # Most of the gtk expressions have a more
+                          # readable version like a hash which can
+                          # help when you are just starting out.
+                          # Hashes may be more readable, but they
+                          # are harder on performance.
+                          # Arrays are faster and easier to compile.
+                          # It's more efficient to use arrays, so once
+                          # the developer  gets use to the expressions,
+                          # switching back to unless hashes are needed
+                          # for functionality, arrays are the go to.
                         end
                     </code>
                 </pre>
@@ -189,83 +184,96 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         $gtk.reset
-                        def tick args 
-                            # Because there is a game instance every frame,
-                            # we will need a way to save the changes from
-                            # frame to frame.
-                            # We can do this by creating a state variable.
-                            # State variables are best created in an
-                            # if statement for our purposes.
-                            # If we try to create them outside of the
-                            # if statement, it can result in the variable
-                            # being redeclared with it's starting value
-                            # every single frame.
+                        def tick args
+                          # Because there is a game instance every frame,
+                          # we will need a way to save the changes from
+                          # frame to frame.
+                          # We can do this by creating a state variable.
+                          # State variables are best created in an
+                          # if statement for our purposes.
+                          # If we try to create them outside of the
+                          # if statement, it can result in the variable
+                          # being redeclared with it's starting value
+                          # every single frame.
 
-                            # So we create click_count. In this case,
-                            # if click_count doesnt exist we create it.
-                            if !args.state.click_count
+                          # So we create click_count. In this case,
+                          # if click_count doesnt exist we create it.
+                          if !args.state.click_count
+                            args.state.click_count = 0
+                          end
+                          args.state.click_count2 = 0 if !args.state.click_count2
+                          args.state.click_count3 ||= 0
+                          # These are 3 ways of doing the same thing
 
-                              args.state.click_count = 0
-                            end
-                            args.state.click_count2 = 0 if !args.state.click_count2
-                            args.state.click_count3 ||= 0
-                            # These are 3 ways of doing the same thing
+                          # In this case we are making click_count,
+                          # to track how many clicks have occurred inside
+                          # the game window.
+                          # This allows a change the game state every time
+                          # a click occurs inside the window.
+                          # Clicking in the window now will reveal a
+                          # temporary message
 
-                            # In this case we are making click_count,
-                            # to track how many clicks have occurred inside
-                            # the game window.
-                            # This allows a change the game state every time
-                            # a click occurs inside the window.
-                            # Clicking in the window now will reveal a
-                            # temporary message
+                          # Now we check to see if the click has returned
+                          # to the up position. Every time this occurs
+                          # we can increment click count by one.
+                          if args.inputs.mouse.up
+                            args.state.click_count += 1
+                            # We also need to reset mouse.up to 0.
+                            # we do this so the values dont continue
+                            # to increment uncontrollably.
+                            args.inputs.mouse.up = 0
+                          end
 
-                            # Now we check to see if the click has returned
-                            # to the up position. Every time this occurs
-                            # we can increment click count by one.
-                            if args.inputs.mouse.up
-                                args.state.click_count += 1
-                                # We also need to reset mouse.up to 0.
-                                # we do this so the values dont continue
-                                # to increment uncontrollably.
-                                args.inputs.mouse.up = 0
-                            end
-                            # This is one of the many example of how you can
-                            # use inputs to receive information from the user.
-                            # In this case we are receiving a click from the
-                            # user and depending on how many mouse clicks
-                            # have occurred we will output
-                            # a different information onto the screen.
-                            # It's almost like a power point how we have set
-                            # it up. So, now each click will change
-                            # a component to the game window.
+                          # This is one of the many example of how you can
+                          # use inputs to receive information from the user.
+                          # In this case we are receiving a click from the
+                          # user and depending on how many mouse clicks
+                          # have occurred we will output
+                          # a different information onto the screen.
+                          # It's almost like a power point how we have set
+                          # it up. So, now each click will change
+                          # a component to the game window.
 
-                            # We can take input from any key, click or button
-                            # via the args.inputs.mouse, args.inputs.keyboard,
-                            # and args.inputs.controller expressions.
-                            # Adding key designations to keyboard and
-                            # controller expressions allow us to use
-                            # almost any key or button in our game.
-                            # From there we can add .up, .down, .held, .click
-                            # and all sorts of expressions to change the the
-                            # information we are obtaining from a press.
-                            # in the movement section we will see how we
-                            # can move a sprite with a key press.
+                          # We can take input from any key, click or button
+                          # via the args.inputs.mouse, args.inputs.keyboard,
+                          # and args.inputs.controller expressions.
+                          # Adding key designations to keyboard and
+                          # controller expressions allow us to use
+                          # almost any key or button in our game.
+                          # From there we can add .up, .down, .held, .click
+                          # and all sorts of expressions to change the the
+                          # information we are obtaining from a press.
+                          # in the movement section we will see how we
+                          # can move a sprite with a key press.
 
-                            # click now in the window to reveal A New Tex
-                            # each click will reveal a new text.
-                            if args.state.click_count == 1
-                                args.outputs.labels << [80, 40, "A New Text", -5, 1, 200, 250, 200, 255]
-                            elsif args.state.click_count == 2
-                                args.outputs.labels << [20, 80, "Look a New Text", -5, 1, 70, 50, 250, 165]
-                            elsif args.state.click_count == 3
-                                args.outputs.labels << [60, 40, "Another New Text", -5, 1, 0, 250, 200, 255]
-                            elsif args.state.click_count == 4
-                                args.outputs.labels << [100, 20, "Text That's New", -5, 1, 200, 50, 0, 55]
-                            elsif args.state.click_count > 4
-                                args.outputs.labels << [80, 60, "This is very important", -5, 1, 200, 250, 200, 255]
-                                args.outputs.labels << [80, 40, "for creating a user interface", -5, 1, 200, 250, 200, 255]
-                                args.outputs.labels << [80, 20, "^_^", -5, 1, 200, 250, 200, 255]
-                            end
+                          # click now in the window to reveal A New Tex
+                          # each click will reveal a new text.
+                          if args.state.click_count == 1
+                            args.outputs.labels << [80, 40,
+                            "A New Text", -5, 0, 200, 50, 200, 255]
+                          elsif args.state.click_count == 2
+                            args.outputs.labels << [20, 80,
+                            "Look a New Text", -5, 1, 70, 50, 250, 165]
+                          elsif args.state.click_count == 3
+                            args.outputs.labels << [120, 40,
+                            "Another New Text", -5, 1, 0, 250, 200, 255]
+                          elsif args.state.click_count == 4
+                            args.outputs.labels << [100, 20,
+                            "Text That's New", -5, 1, 200, 50, 0, 55]
+                          elsif args.state.click_count > 4
+                            args.outputs.labels << [80, 60,
+                            "This is very important", -5, 1, 00, 20, 00, 255]
+                            args.outputs.labels << [80, 40,
+                            "for creating a user interface",
+                            -5, 1, 0, 50, 0, 255]
+                            args.outputs.labels << [80, 20,
+                            "^_^", -5, 1, 20, 20, 20, 255]
+                          else
+                            args.outputs.labels << [80, 40,
+                            " Click now", -5, 1, 0, 0, 0, 255]
+                            args.outputs.labels << [80, 20,
+                            "^_^", -5, 1, 200, 250, 200, 255]
+                          end
                         end
                         # That's it, 5 clicks.
                         # Now before we move on the the next part
@@ -286,33 +294,33 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                            # The next expression we will go through is lines:
-                            #                       X1  Y1    X2
-                            args.outputs.lines <<  [0,  90,   160,
-                            #     Y2    RED   GREEN   BLUE  ALPHA
-                                  0,    0,    0,      0,    255]
-                            # Lines are different but a little less
-                            # complicated. The first 4 fields are the
-                            # x/y coordinate beginning and end points.
-                            # x1, y1 are the origin points, and x2, y2
-                            # are the end points to the line. Just like with
-                            # labels we can change the color of the line.
-                            # We can even make it invisible or transparent
-                            # using alpha if we want.
+                          # The next expression we will go through is lines:
+                          #                       X1  Y1    X2
+                          args.outputs.lines <<  [0,  90,   160,
+                          # Y2    RED   GREEN   BLUE  ALPHA
+                            0,    0,    0,      0,    255]
+                          # Lines are different but a little less
+                          # complicated. The first 4 fields are the
+                          # x/y coordinate beginning and end points.
+                          # x1, y1 are the origin points, and x2, y2
+                          # are the end points to the line. Just like with
+                          # labels we can change the color of the line.
+                          # We can even make it invisible or transparent
+                          # using alpha if we want.
 
-                            # The Line also has a hash
-                            args.outputs.lines << {
-                                x: 0,
-                                y: 0,
-                                x2: 160,
-                                y2: 90,
-                                r: 0,
-                                g: 255,
-                                b: 0,
-                                a: 255
-                            }
-                            # Play around with the values and you can see how
-                            # it affects the lines
+                          # The Line also has a hash
+                          args.outputs.lines << {
+                            x: 0,
+                            y: 0,
+                            x2: 160,
+                            y2: 90,
+                            r: 0,
+                            g: 255,
+                            b: 0,
+                            a: 255
+                          }
+                          # Play around with the values and you can see how
+                          # it affects the lines
                         end
                     </code>
                 </pre>
@@ -321,43 +329,44 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="6">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Step 6: Borders and Solids</h1>
-                <p>What if we wanted to have border around a section of the game? What about a popup interface? Using boarders and solids can allow us to add a background for a menu even. </p>
+                <p>What if we wanted to have border around a section of the game?
+                    What about a popup interface? Using boarders and solids can allow
+                    us to add a background for a menu even.
+                </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                            # Often it is necessary to play with the
-                            # coordinates to get things in their
-                            # desired locations. We shall create a
-                            # couple variables to assist in this process.
-                            board_x = 50
-                            board_y = 60
-                            board_w = 20
-                            board_h = 20
+                          # Often it is necessary to play with the
+                          # coordinates to get things in their
+                          # desired locations. We shall create a
+                          # couple variables to assist in this process.
+                          board_x = 50
+                          board_y = 60
+                          board_w = 20
+                          board_h = 20
 
-                            # Boarders and solids are like lines, but they
-                            # start at the desired coordinate and then have
-                            # a width and height. X and Y are the coordinates.
-                            # W and H are width and height.
-                            # Similarly to the other expressions
-                            # we also have alignment color and transparency.
+                          # Boarders and solids are like lines, but they
+                          # start at the desired coordinate and then have
+                          # a width and height. X and Y are the coordinates.
+                          # W and H are width and height.
+                          # Similarly to the other expressions
+                          # we also have alignment color and transparency.
 
-                            #                        X         Y
-                            args.outputs.borders << [board_x,  board_y,
-                            #  WIDTH     HEIGHT   RED  GREEN   BLUE  ALPHA
-                               board_w,  board_h, 0,   0,      200,  255]
+                          #                        X         Y
+                          args.outputs.borders << [board_x,  board_y,
+                          #  WIDTH     HEIGHT   RED  GREEN   BLUE  ALPHA
+                             board_w,  board_h, 0,   0,      200,  255]
 
-                            # solids are organized pretty much the same
-                            # way as boarders. The only difference is
-                            # that they portray a solid color.
-                            args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2,
-                            35, 0, 50, 255]
+                          # solids are organized pretty much the same
+                          # way as boarders. The only difference is
+                          # that they portray a solid color.
+                          args.outputs.solids << [board_x+1, board_y+1,
+                          board_w-2, board_h-2, 35, 0, 50, 255]
 
-                            # As before, you can play around with the values
-                            # to see how things in the window change
-
-
+                          # As before, you can play around with the values
+                          # to see how things in the window change
                         end
                     </code>
                 </pre>
@@ -366,10 +375,11 @@
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="7">
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Step 7: Overview</h1>
-                <p>We have seen: how ticks dictate the way our game runs,
+                <p>We have seen how ticks dictate the way our game runs,
                     how we can use mouse clicks to change whats displayed,
                     how labels, lines, borders and solids works. Next we 
                     will see how sprites can be outputted and manipulated.
+                    Here you can play with everything that we have created so far.
                 </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -377,19 +387,21 @@
                     <code class="language-ruby" itemprop="text">
                         $gtk.reset
                         def tick args
-                            ticks = args.state.tick_count
-                            args.outputs.labels << [64, 70, ticks, -5, 1, 0, 0, 0, 255]
-                            args.outputs.lines << [37, 55, 86, 73, 0, 0, 0, 255]
-                            args.outputs.lines << [37, 74, 86, 56, 0, 0, 0, 255]
+                          ticks = args.state.tick_count
+                          args.outputs.labels << [64, 70, ticks, -5, 1, 0, 0,
+                          0, 255]
+                          args.outputs.lines << [37, 55, 86, 73, 0, 0, 0, 255]
+                          args.outputs.lines << [37, 74, 86, 56, 0, 0, 0, 255]
 
-                            board_x = 36
-                            board_y = 54
-                            board_w = 52
-                            board_h = 21
+                          board_x = 36
+                          board_y = 54
+                          board_w = 52
+                          board_h = 21
 
-                            args.outputs.borders << [board_x, board_y, board_w, board_h, 0, 0, 200,  255 ]
-                            args.outputs.solids << [board_x+1, board_y+1, board_w-2, board_h-2, 35, 0, 50, 255]
-
+                          args.outputs.borders << [board_x, board_y, board_w,
+                          board_h, 0, 0, 200,  255 ]
+                          args.outputs.solids << [board_x+1, board_y+1,
+                          board_w-2, board_h-2, 35, 0, 50, 255]
                         end
                     </code>
                 </pre>
@@ -406,14 +418,17 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                        # In addition to the expressions are such things as gtk expressions.
+                        # In addition to the expressions are such things
+                        # as gtk expressions.
                         $gtk.reset   # reset all game state if reloaded.
-                        # This expression will reset or reload the game every time that the game is saved.
-                        # There are many more that exist in dragon ruby that can help with testing 
-                        # the game or even with functionality.
-                        # If we wanted to we could set up something more elaborate here, instead of creating it globally,
-                        # we could have the game reset if the user presses r for example.
-                        
+                        # This expression will reset or reload the game
+                        # every time that the game is saved. There are
+                        # many more that exist in dragon ruby that can help
+                        # with testing the game or even with functionality.
+                        # If we wanted to we could set up something more
+                        # elaborate here, instead of creating it globally,
+                        # we could have the game reset if the user presses
+                        # r for example.
                     </code>
                 </pre>
             </div>
@@ -424,7 +439,7 @@
                 <p>The next element for us to examine is sprites.
                     These are the key elements of the game. They
                     represent the enemies, the user, objects, 
-                    and most of the other elements in  our game
+                    and most of the other elements in  our game.
                 </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -442,8 +457,8 @@
                           # moving parts.
 
                           # Lets start with a simple sprite such as a circle:
-
                           SIZE = 100
+                          # Declaring size helps us manipulate it later.
                           #                         X    Y    W      H
                           args.outputs.sprites << [ 20,  20,  SIZE,  SIZE,
                           # Location/Path
@@ -470,7 +485,6 @@
                           # and last of all is the alpha value.
 
                           # Sprites will continue on the next step.
-
                         end
                     </code>
                 </pre>
@@ -489,41 +503,40 @@
                 <pre>
                     <code class="language-ruby" itemprop="text">
                         def tick args
-                            # There are many extra parts to hashes some are
-                            # self explanatory others might seem strange
-                            # Test them to see what they do.
-                            # We do not have enough time this tutorial
-                            # to explore them, but future tutorials will.
-                            args.outputs.sprites << {
-                                x: 80,
-                                y: 40,
-                                w: 10,
-                                h: 10,
-                                path: "sprites/circle.png",
-                                angle: 0,
-                                a: 255,
-                                r: 255,
-                                g: 255,
-                                b: 255,
-                                # These we wont be touching in this tutorial,
-                                # but they are extremely useful. \/ \/ \/
-                                source_x:  0,
-                                source_y:  0,
-                                source_w: -1,
-                                source_h: -1,
-                                flip_vertically: false,
-                                flip_horizontally: false,
-                                angle_anchor_x: 0.5,
-                                angle_anchor_y: 1.0
-                              }
-
-                            # Whats this checkers pattern?
-                            # This is what happens when your path doesnt
-                            # lead to a file or destination without a
-                            # compatible file. No sprite exists of the
-                            # designated name in the designated path,
-                            # so it outputs a place holder.
-                            end
+                          # There are many extra parts to hashes some are
+                          # self explanatory others might seem strange
+                          # Test them to see what they do.
+                          # We do not have enough time this tutorial
+                          # to explore them, but future tutorials will.
+                          args.outputs.sprites << {
+                            x: 80,
+                            y: 40,
+                            w: 10,
+                            h: 10,
+                            path: "sprites/circle.png",
+                            angle: 0,
+                            a: 255,
+                            r: 255,
+                            g: 255,
+                            b: 255,
+                            # These we wont be touching in this tutorial,
+                            # but they are extremely useful. \/ \/ \/
+                            source_x:  0,
+                            source_y:  0,
+                            source_w: -1,
+                            source_h: -1,
+                            flip_vertically: false,
+                            flip_horizontally: false,
+                            angle_anchor_x: 0.5,
+                            angle_anchor_y: 1.0
+                          }
+                          # Whats this checkers pattern?
+                          # This is what happens when your path doesnt
+                          # lead to a file or destination without a
+                          # compatible file. No sprite exists of the
+                          # designated name in the designated path,
+                          # so it outputs a place holder.
+                        end
                     </code>
                 </pre>
             </div>
@@ -539,42 +552,49 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-
+                        $gtk.reset
                         def tick args
-                            # First we need to create variables for our
-                            # sprites. We want to do this in a way that
-                            # it check if the object exists or not.
-                            # Its nice that in ruby we do not need to
-                            # declare a variable.  We can simply check
-                            # if it exists or not and then assign a
-                            # value if it does in fact not exist.
-                            args.state.sprite_x ||= 10
-                            args.state.sprite_y ||= 10
-                            args.state.sprite_size ||= 5
-                            # Doing this establishes the values for x and y.
-                            # Because they are an object of state, the
-                            # values will carry over from one tick/frame
-                            # to another.
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png']
-                            # Using these variables that are carried from
-                            # frame to frame lets us change them when ever
-                            # we need to.
+                          # First we need to create variables for our
+                          # sprites. We want to do this in a way that
+                          # it check if the object exists or not.
+                          # Its nice that in ruby we do not need to
+                          # declare a variable.  We can simply check
+                          # if it exists or not and then assign a
+                          # value if it does in fact not exist.
+                          args.state.sprite_x ||= 10
+                          args.state.sprite_y ||= 10
+                          args.state.sprite_size ||= 5
+                          # Doing this establishes the values for x and y.
+                          # Because they are an object of state, the
+                          # values will carry over from one tick/frame
+                          # to another.
+                          args.outputs.sprites << [args.state.sprite_x,
+                          args.state.sprite_y, args.state.sprite_size,
+                          args.state.sprite_size, 'sprites/circle-black.png']
+                          # Using these variables that are carried from
+                          # frame to frame lets us change them when ever
+                          # we need to.
 
-                            # For example we can have them change based on
-                            # the current tick count.
-                            args.state.sprite_x = (args.state.sprite_x + args.state.tick_count)%160/10 if args.state.sprite_x
-                            args.state.sprite_y =  (args.state.sprite_y + args.state.tick_count)%90/10 if args.state.sprite_y
-                            # This will move the sprite depending on the tick count as you can see.
-                            args.outputs.labels << [50, 50, args.state.tick_count]
-                            # a little jank i know, but i assure you it can
-                            # be a useful techneque. If we have a sprites
-                            # location varry depending on the frame, we can
-                            # use this to establish a patrolling npc or monster
-                            # Often we will need to play with values until
-                            # we see a desirable outcome. In this case we
-                            # could play with the initial values or how we
-                            # are changing them to create movement that is
-                            # much more smooth and predictable.
+                          # For example we can have them change based on
+                          # the current tick count.
+                          args.state.sprite_x = (args.state.sprite_x + args.state.tick_count/4000)%160 if args.state.sprite_x
+                          args.state.sprite_y =  (args.state.sprite_y + args.state.tick_count/4000)%90 if args.state.sprite_y
+                          # This will move the sprite depending on the tick
+                          #count as you can see. This situation will also
+                          # speed up the circles movement as more ticks pass.
+                          args.outputs.labels << [50, 50, args.state.tick_count]
+                          # A little jank I know, but i assure you it can
+                          # be a useful techneque. If we have a sprites
+                          # location varry depending on the frame, we can
+                          # use this to establish a patrolling npc or monster.
+                          # All we need to add is some if statements.
+                          # Often we will need to play with values until
+                          # we see a desirable outcome. In this case we
+                          # could play with the initial values or how we
+                          # are changing them to create movement that is
+                          # much more smooth and predictable.
+                          # Feel free to play with this to see
+                          # some varring and interesting affects.
                         end
                     </code>
                 </pre>
@@ -584,8 +604,8 @@
             <div itemscope="itemscope" itemtype="tutorial-text">
                 <h1>Sprites Part 4:Movement and inputs </h1>
                 <p> Moving a character in a game could be done however we want.
-                    For this instance we will move the sprite based on the wasd 
-                    keys just like lot of pc games use.
+                    For this instance we will move the sprite based on the WASD
+                    keys just like a lot of mouse and keyboard games use.
                 </p>
             </div>
             <div itemscope="itemscope" itemtype="tutorial-code">
@@ -593,35 +613,37 @@
                     <code class="language-ruby" itemprop="text">
                         $gtk.reset
                         def tick args
-                            # For us to set up movement of our circle, we are
-                            # going to want to first set up the starting location of
-                            # our sprite.
+                          # For us to set up movement of our circle,
+                          # we are going to want to first set up the
+                          # starting location of our sprite.
+                          if !args.state.sprite_x
+                            # we have our basic x/y variables
+                            args.state.sprite_x = 100
+                            args.state.sprite_y = 80
+                            # here is the size
+                            args.state.sprite_size = 5
+                            # and finally the movement speed.
+                            # this will determine how many pixels per
+                            # frame the sprite will move while the key
+                            # is pressed
+                            args.state.sprite_movement_speed = 1
+                          end
+                          args.outputs.sprites << [args.state.sprite_x,
+                          args.state.sprite_y, args.state.sprite_size,
+                          args.state.sprite_size, 'sprites/circle-black.png']
+                          # For key functions we want to use args.inputs.keyboard.
+                          # after the last dot the desired key is typed.
 
-                            if !args.state.sprite_x
-                                # we have our basic x/y variables
-                                args.state.sprite_x = 120
-                                args.state.sprite_y = 80
-                                # here is the size
-                                args.state.sprite_size = 5
-                                # and finally the movement speed.
-                                # this will determine how many pixels per
-                                #frame the sprite will move while the key is pressed
-                                args.state.sprite_movement_speed = 1
-                            end
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png']
-                            # For key functions we want to use args.inputs.keyboard.
-                            # after the last dot the desired key is typed.
-
-                            # There are many ways to write the following, but
-                            # this particular way should serve our purposes.
-                            # in this case we have the x coordinate increasing when d is pressed
-                            # and decreasing when a is pressed. similarly we have
-                            # y increasing when w is pressed and decreasing when s is pressed
-                            # now our circle will move like a character in a game.
-                            args.state.sprite_x += args.state.sprite_movement_speed if args.inputs.keyboard.d
-                            args.state.sprite_x -= args.state.sprite_movement_speed if args.inputs.keyboard.a
-                            args.state.sprite_y += args.state.sprite_movement_speed if args.inputs.keyboard.w
-                            args.state.sprite_y -= args.state.sprite_movement_speed if args.inputs.keyboard.s
+                          # There are many ways to write the following, but
+                          # this particular way should serve our purposes.
+                          # in this case we have the x coordinate increasing when d is pressed
+                          # and decreasing when a is pressed. similarly we have
+                          # y increasing when w is pressed and decreasing when s is pressed
+                          # now our circle will move like a character in a game.
+                          args.state.sprite_x += args.state.sprite_movement_speed if args.inputs.keyboard.d
+                          args.state.sprite_x -= args.state.sprite_movement_speed if args.inputs.keyboard.a
+                          args.state.sprite_y += args.state.sprite_movement_speed if args.inputs.keyboard.w
+                          args.state.sprite_y -= args.state.sprite_movement_speed if args.inputs.keyboard.s
                         end
                     </code>
                 </pre>
@@ -640,52 +662,63 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+                        $gtk.reset
                         def tick args
-                            if !args.state.sprite_x
-                                args.state.sprite_x = 120
-                                args.state.sprite_y = 80
-                                args.state.sprite_size = 5
-                                args.state.sprite_movement_speed = 1
-                                # Here is the new direction variable
-                                args.state.direction = 90
-                            end
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
-                            # Now that we have an extra variable to assign
-                            # when  a key is pressed we will change the
-                            # format of our if statements.We can have our
-                            # sprite look in the direction it is traveling.
-                            if args.inputs.keyboard.d
-                                args.state.sprite_x += args.state.sprite_movement_speed
-                                args.state.direction = 0
-                            end
-                            if args.inputs.keyboard.w
-                                args.state.sprite_y += args.state.sprite_movement_speed
-                                args.state.direction = 90
-                            end
-                            if args.inputs.keyboard.a
-                                args.state.sprite_x -= args.state.sprite_movement_speed
-                                args.state.direction = 180
-                            end
-                            if args.inputs.keyboard.s
-                                args.state.sprite_y -= args.state.sprite_movement_speed
-                                args.state.direction = 270
-                            end
-
-                            screen_bound_y = 90
-                            screen_bound_x = 160
-                            if  args.state.sprite_y <= 0
-                                # If the circle y coordinate is less than
-                                # the bottom of the screen it will relocate
-                                # the sprite back to where it was before
-                                # it tried to leave the screen
-                                args.state.sprite_y= 1
-                            elsif  args.state.sprite_y >= screen_bound_y
-                                args.state.sprite_y = screen_bound_y-1
-                            elsif  args.state.sprite_x <= 0
-                                args.state.sprite_x = 1
-                            elsif  args.state.sprite_x >= screen_bound_x
-                                args.state.sprite_x = screen_bound_x-1
-                            end
+                          if !args.state.sprite_x
+                            args.state.sprite_x = 120
+                            args.state.sprite_y = 80
+                            args.state.sprite_size = 5
+                            args.state.sprite_movement_speed = 1
+                            # Here is the new direction variable
+                            args.state.direction = 90
+                          end
+                          args.outputs.sprites << [args.state.sprite_x,
+                          args.state.sprite_y, args.state.sprite_size,
+                          args.state.sprite_size, 'sprites/circle-black.png',
+                          args.state.direction]
+                          # Now that we have an extra variable to assign
+                          # when  a key is pressed we will change the
+                          # format of our if statements.We can have our
+                          # sprite look in the direction it is traveling.
+                          if args.inputs.keyboard.d
+                            args.state.sprite_x += args.state.sprite_movement_speed
+                            args.state.direction = 0
+                          end
+                          if args.inputs.keyboard.w
+                            args.state.sprite_y += args.state.sprite_movement_speed
+                            args.state.direction = 90
+                          end
+                          if args.inputs.keyboard.a
+                            args.state.sprite_x -= args.state.sprite_movement_speed
+                            args.state.direction = 180
+                          end
+                          if args.inputs.keyboard.s
+                            args.state.sprite_y -= args.state.sprite_movement_speed
+                            args.state.direction = 270
+                          end
+                          # Here we make the bounds equivilent to what ever
+                          # our desired boundry numbers are.
+                          screen_bound_y = 90
+                          screen_bound_x = 160
+                          # We could also set up lower bounds for our
+                          # sprite but lets stick with zero for now.
+                          if  args.state.sprite_y <= 0
+                            # If the circle y coordinate is less than
+                            # the bottom of the screen it will relocate
+                            # the sprite back to where it was before
+                            # it tried to leave the screen
+                            args.state.sprite_y= 1
+                          elsif  args.state.sprite_y >= screen_bound_y
+                            args.state.sprite_y = screen_bound_y-1
+                          elsif  args.state.sprite_x <= 0
+                            args.state.sprite_x = 1
+                          elsif  args.state.sprite_x >= screen_bound_x
+                            args.state.sprite_x = screen_bound_x-1
+                          end
+                          # We can shift the boundries to whatever
+                          # we might desire. We could even create an area
+                          # inside the bounds that we can not move through.
+                          # This could be a wall, a tree, or even an npc.
                         end
                     </code>
                 </pre>
@@ -704,53 +737,55 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
+                        $gtk.reset
                         def tick args
-                            # Now, if we want our sprite to wrap we can
-                            # do that by having the sprites coordinates
-                            # change when it goes out of bounds or off
-                            # the screen. This can also allow you to
-                            # make barriers too as we have seen.
-                            screen_bound_y = 240
-                            screen_bound_x = 160
-                            if  args.state.sprite_y <= 0
-                                # If the circle y coordinate is less than
-                                # the bottom of the screen it will relocate
-                                # the sprite to the top of the screen.
-                                args.state.sprite_y= screen_bound_y
-                            elsif  args.state.sprite_y >= screen_bound_y
-                                args.state.sprite_y = 0
-                            elsif  args.state.sprite_x <= 0
-                                args.state.sprite_x =screen_bound_x
-                            elsif  args.state.sprite_x >= screen_bound_x
-                                args.state.sprite_x = 0
-                            end
-
-                            if !args.state.sprite_x
-                                args.state.sprite_x = 120
-                                args.state.sprite_y = 80
-                                args.state.sprite_size = 5
-                                args.state.sprite_movement_speed = 1
-                                args.state.direction = 90
-                            end
-                            # Down here we have the extra code we have
-                            # already discussed during this tutorial
-                            args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
-                            if args.inputs.keyboard.d
-                                args.state.sprite_x += args.state.sprite_movement_speed
-                                args.state.direction = 0
-                            end
-                            if args.inputs.keyboard.w
-                                args.state.sprite_y += args.state.sprite_movement_speed
-                                args.state.direction = 90
-                            end
-                            if args.inputs.keyboard.a
-                                args.state.sprite_x -= args.state.sprite_movement_speed
-                                args.state.direction = 180
-                            end
-                            if args.inputs.keyboard.s
-                                args.state.sprite_y -= args.state.sprite_movement_speed
-                                args.state.direction = 270
-                            end
+                          # Now, if we want our sprite to wrap we need
+                          # simply to have the sprites coordinates
+                          # change to the opposite side of the screen
+                          # when it goes out of bounds or off
+                          # the screen. This can also allow you to
+                          # make barriers too as we have seen.
+                          screen_bound_y = 240
+                          screen_bound_x = 160
+                          if  args.state.sprite_y <= 0
+                            # If the circle y coordinate is less than
+                            # the bottom of the screen it will relocate
+                            # the sprite to the top of the screen.
+                            args.state.sprite_y= screen_bound_y
+                          elsif  args.state.sprite_y >= screen_bound_y
+                            args.state.sprite_y = 0
+                          elsif  args.state.sprite_x <= 0
+                            args.state.sprite_x =screen_bound_x
+                          elsif  args.state.sprite_x >= screen_bound_x
+                            args.state.sprite_x = 0
+                          end
+                          # Down here we have the extra code we have
+                          # already discussed during this tutorial but
+                          # is necessary for this part of the tutorial
+                          if !args.state.sprite_x
+                            args.state.sprite_x = 120
+                            args.state.sprite_y = 80
+                            args.state.sprite_size = 5
+                            args.state.sprite_movement_speed = 1
+                            args.state.direction = 90
+                          end
+                          args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
+                          if args.inputs.keyboard.d
+                            args.state.sprite_x += args.state.sprite_movement_speed
+                            args.state.direction = 0
+                          end
+                          if args.inputs.keyboard.w
+                            args.state.sprite_y += args.state.sprite_movement_speed
+                            args.state.direction = 90
+                          end
+                          if args.inputs.keyboard.a
+                            args.state.sprite_x -= args.state.sprite_movement_speed
+                            args.state.direction = 180
+                          end
+                          if args.inputs.keyboard.s
+                            args.state.sprite_y -= args.state.sprite_movement_speed
+                            args.state.direction = 270
+                          end
                         end
                     </code>
                 </pre>
