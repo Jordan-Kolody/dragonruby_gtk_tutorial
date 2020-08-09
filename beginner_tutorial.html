@@ -602,7 +602,7 @@
         </div>
         <div itemscope="itemscope" itemtype="tutorial-step" data-step-number="12">
             <div itemscope="itemscope" itemtype="tutorial-text">
-                <h1>Sprites Part 4:Movement and inputs </h1>
+                <h1>Sprites Part 4: Movement and inputs </h1>
                 <p> Moving a character in a game could be done however we want.
                     For this instance we will move the sprite based on the WASD
                     keys just like a lot of mouse and keyboard games use.
@@ -696,8 +696,8 @@
                             args.state.sprite_y -= args.state.sprite_movement_speed
                             args.state.direction = 270
                           end
-                          # Here we make the bounds equivilent to what ever
-                          # our desired boundry numbers are.
+                          # Here we make the bounds equivalent to whatever
+                          # our desired boundary numbers are.
                           screen_bound_y = 90
                           screen_bound_x = 160
                           # We could also set up lower bounds for our
@@ -715,7 +715,7 @@
                           elsif  args.state.sprite_x >= screen_bound_x
                             args.state.sprite_x = screen_bound_x-1
                           end
-                          # We can shift the boundries to whatever
+                          # We can shift the boundaries to whatever
                           # we might desire. We could even create an area
                           # inside the bounds that we can not move through.
                           # This could be a wall, a tree, or even an npc.
@@ -745,7 +745,7 @@
                           # when it goes out of bounds or off
                           # the screen. This can also allow you to
                           # make barriers too as we have seen.
-                          screen_bound_y = 240
+                          screen_bound_y = 90
                           screen_bound_x = 160
                           if  args.state.sprite_y <= 0
                             # If the circle y coordinate is less than
@@ -753,11 +753,11 @@
                             # the sprite to the top of the screen.
                             args.state.sprite_y= screen_bound_y
                           elsif  args.state.sprite_y >= screen_bound_y
-                            args.state.sprite_y = 0
+                            args.state.sprite_y = 1
                           elsif  args.state.sprite_x <= 0
-                            args.state.sprite_x =screen_bound_x
+                            args.state.sprite_x = screen_bound_x
                           elsif  args.state.sprite_x >= screen_bound_x
-                            args.state.sprite_x = 0
+                            args.state.sprite_x = 1
                           end
                           # Down here we have the extra code we have
                           # already discussed during this tutorial but
