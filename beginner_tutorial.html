@@ -49,7 +49,7 @@
                         args.outputs.labels << [80, 60, "Hello World",
                                           -5, 0, 200, 050, 100,   225]
                         end
- 
+
                         # To experiment, change aspects of the expression.
                         # Try it to see what happens.
                         # These parts will be explained later in the tutorial.
@@ -388,10 +388,10 @@
                         $gtk.reset
                         def tick args
                           ticks = args.state.tick_count
-                          args.outputs.labels << [64, 70, ticks, -5, 1, 0, 0,
+                          args.outputs.labels << [64, 70, ticks, -5, 1, 0, 160,
                           0, 255]
-                          args.outputs.lines << [37, 55, 86, 73, 0, 0, 0, 255]
-                          args.outputs.lines << [37, 74, 86, 56, 0, 0, 0, 255]
+                          args.outputs.lines << [37, 55, 86, 73, 100, 100, 100, 255]
+                          args.outputs.lines << [37, 74, 86, 56, 50, 50, 50, 255]
 
                           board_x = 36
                           board_y = 54
@@ -769,7 +769,9 @@
                             args.state.sprite_movement_speed = 1
                             args.state.direction = 90
                           end
-                          args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y, args.state.sprite_size, args.state.sprite_size, 'sprites/circle-black.png', args.state.direction]
+                          args.outputs.sprites << [args.state.sprite_x, args.state.sprite_y,
+                          args.state.sprite_size, args.state.sprite_size,
+                          'sprites/circle-black.png', args.state.direction]
                           if args.inputs.keyboard.d
                             args.state.sprite_x += args.state.sprite_movement_speed
                             args.state.direction = 0
@@ -806,16 +808,19 @@
             <div itemscope="itemscope" itemtype="tutorial-code">
                 <pre>
                     <code class="language-ruby" itemprop="text">
-                        # This is the end of our intro tutorial.
-                        # Here we will provide you with some of the resources needed
-                        # to get started with the Dragonruby gametoolkit
+                        # This is the end of our intro tutorial. Here we will
+                        # provide you with some of the resources needed
+                        # to get started with the Dragonruby gametoolkit.
 
                         # Here is the link to the gtk:
                         # https://dragonruby.itch.io/dragonruby-gtk
-                        # Check if you qualify for a free licence and contact Amir at ar@amirrajan.net
-
-                        # You can edit your code via text document if you want,
-                        # but it's just as easy to download and editor
+                        # Check if you qualify for a free licence
+                        # and contact Amir at ar@amirrajan.net if
+                        # you think you qualify.
+                        
+                        # You can edit your code via text document
+                        # if you want, but it's just as easy to
+                        # download an IDE (editor).
                         # (IDE: (Intergrated Development Environment))
                         # Two that are pretty good are:
 
@@ -823,32 +828,54 @@
                         # https://code.visualstudio.com
 
                         # Ruby Mine, a paid IDE that offers itself free to:
-                        # students, teachers, classrooms, and open source projects.
-                        # It also has a free trial.
+                        # students, teachers, classrooms, and open source
+                        # projects. It also has a free trial.
                         # https://www.jetbrains.com/ruby
 
-                        # Once you have The dragonruby gtk downloaded and unzipped
-                        # You will need to open the terminal, you can use your IDE's terminal for this.
-                        # Then Navigate to the folder that contains the Dragonruby.exe
-                        # Once there you can simply type "./dragonruby" into the terminal and poof
-                        # The hello world example that comes with the gtk will reveal itself in a pop out window
+                        # Once you have The dragonruby gtk downloaded
+                        # and unzipped, you will need to open the terminal,
+                        # you can use your IDE's terminal for this or
+                        # use the terminal built into your device.
 
-                        # Important to note here is that dragon ruby will look for the first app folder available
-                        # This means that the app folder inside of mygame is what is being compiled into dragonruby
-                        # If there is a folder you would like to specify for dragonruby to compile you will need to include
-                        # that files path after "./dragonruby" for example, the tech demo:
+                        # Then we can navigate to the folder that
+                        # contains the Dragonruby.exe. Once there you
+                        # can simply type
+                        # "./dragonruby"
+                        # into the terminal and poof.
+                        # The hello world example that comes with the
+                        # gtk will reveal itself in a pop up window.
+
+                        # Important to note here is that dragon ruby
+                        # will look for the first app folder available
+                        # This means that the app folder inside of
+                        # mygame is what is being compiled into dragonruby
+                        # If there is a folder you would like to specify
+                        # for dragonruby to compile you will need to include
+                        # that files relitive path after
+                        # "./dragonruby" for example, the tech demo:
+
                         # "./dragonruby samples\01_api_99_tech_demo"
+                        # The tech demo has a lot of examples of what
+                        # can be done with the gtk.
 
-                        # If you desire more info on anything that we have gone over and more,
-                        # the samples folder has dozens of examples with documentation;
-                        # in addition, there is documentation inside of the "mygame\app\documentation" folder.
-                        # This documentation goes of over the expressions we have used in the tutorial
-                        # and is excellent for quick reference, until you are comfortable using them that it.
+                        # If you desire more info on anything that we
+                        # have gone over and more, the samples folder
+                        # has dozens of examples with documentation;
+                        # in addition, there is documentation inside
+                        # of the "mygame\app\documentation" folder.
+                        # This documentation goes of over the expressions
+                        # we have used in the tutorial in great detail.
+                        # It is excellent for quick reference of expressions
+                        # and methods. Even if you are already comfortable
+                        # using them.
 
                         # Here we are.
                         # At the end of our intro tutorial.
-                        # Feel free to go back and practice using the different elements of the gtk.
+                        # Feel free to go back and practice using the
+                        # different elements of the gtk.
                         # We'll see you at the next one.
+
+
                     </code>
                 </pre>
             </div>
